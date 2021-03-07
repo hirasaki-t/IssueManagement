@@ -63,7 +63,7 @@ namespace WebApp
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "課題管理システム");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "課題管理システム");
             });
         }
     }
