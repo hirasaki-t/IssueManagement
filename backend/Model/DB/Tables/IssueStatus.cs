@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Model.DB.Tables
 {
-    public sealed record IssueStatus
+    /// <summary>課題ステータステーブル</summary>
+    public class IssueStatus
     {
         /// <summary>ID</summary>
         [Key]
@@ -11,5 +13,8 @@ namespace Model.DB.Tables
 
         /// <summary>ステータス</summary>
         public string Status { get; set; } = string.Empty;
+
+        /// <summary>課題を識別するためのキー情報の一覧</summary>
+        public virtual ICollection<Issue> Issues { get; set; } = null!;
     }
 }
