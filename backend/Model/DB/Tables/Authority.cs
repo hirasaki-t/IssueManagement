@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Model.Tables;
 
 namespace Model.DB.Tables
 {
     /// <summary>権限テーブル</summary>
-    public class Authority
+    public record Authority
     {
         /// <summary>ID</summary>
         [Key]

@@ -1,11 +1,10 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.DB.Tables
 {
     /// <summary>案件テーブル</summary>
-    public class Project
+    public record Project
     {
         /// <summary>ID</summary>
         [Key]

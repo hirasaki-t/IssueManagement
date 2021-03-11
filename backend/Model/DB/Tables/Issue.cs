@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Model.DB.Tables
 {
     /// <summary>課題テーブル</summary>
-    public class Issue
+    public record Issue
     {
         /// <summary>ID</summary>
         [Key]

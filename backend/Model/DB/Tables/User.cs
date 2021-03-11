@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Model.DB.Tables;
@@ -7,7 +6,7 @@ using Model.DB.Tables;
 namespace Model.Tables
 {
     /// <summary>ユーザーテーブル</summary>
-    public class User
+    public record User
     {
         /// <summary>ID</summary>
         [Key]

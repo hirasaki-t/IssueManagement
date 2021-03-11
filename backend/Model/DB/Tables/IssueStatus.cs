@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Model.DB.Tables
 {
     /// <summary>課題ステータステーブル</summary>
-    public class IssueStatus
+    public record IssueStatus
     {
         /// <summary>ID</summary>
         [Key]

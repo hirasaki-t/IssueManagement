@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Model.Tables;
 
 namespace Model.DB.Tables
 {
     /// <summary>部門テーブル</summary>
-    public class Department
+    public record Department
     {
         /// <summary>ID</summary>
         [Key]
