@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Model.DB.Tables;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Model.DB.Tables;
 
 namespace Model.Tables
 {

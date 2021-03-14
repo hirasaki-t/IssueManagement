@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Model.Tables;
-using System;
 using System.Threading.Tasks;
 
 namespace Model.DB.DataService
