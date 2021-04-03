@@ -34,5 +34,10 @@ namespace Model.DB.DataService
         {
             foreach (var target in targets) dataContext.Entry(target).State = EntityState.Detached;
         }
+
+        /// <summary>オブジェクトをデタッチする</summary>
+        /// <param name="target">デタッチ対象のオブジェクト</param>
+        private void DetachEntity<T>(T target) where T : class =>
+            dataContext.Entry(target).State = EntityState.Detached;
     }
 }

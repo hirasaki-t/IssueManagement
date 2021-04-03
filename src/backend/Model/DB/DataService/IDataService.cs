@@ -1,4 +1,5 @@
-﻿using Model.Tables;
+﻿using Model.DB.Tables;
+using Model.Tables;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,6 +18,10 @@ namespace Model.DB.DataService
         /// <returns>影響を与えた行数</returns>
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
-        public Task<User[]> GetUserAsync();
+        Task<User[]> GetUserAsync();
+
+        /// <summary>権限一覧の取得</summary>
+        /// <returns>権限一覧</returns>
+        Task<Authority[]> GetAuthoritiesDatasAsync();
     }
 }
