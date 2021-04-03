@@ -78,7 +78,7 @@ namespace Model.DB.DataContext
         private static void SetSeed(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Authority>().HasData(
-                new() { ID = X.Authorities.Owner, Name = "管理者" },
+                new() { ID = X.Authorities.Administrator, Name = "管理者" },
                 new() { ID = X.Authorities.General, Name = "一般ユーザー" });
 
             modelBuilder.Entity<Department>().HasData(
