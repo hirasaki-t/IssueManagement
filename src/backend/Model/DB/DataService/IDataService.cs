@@ -1,4 +1,4 @@
-﻿using Model.DB.Tables;
+using Model.DB.Tables;
 using Model.Tables;
 using System;
 using System.Threading;
@@ -23,5 +23,18 @@ namespace Model.DB.DataService
         /// <summary>権限一覧の取得</summary>
         /// <returns>権限一覧</returns>
         Task<Authority[]> GetAuthoritiesDatasAsync();
+
+        /// <summary>部署一覧の取得</summary>
+        /// <returns>部署一覧</returns>
+        Task<Department[]> GetDepartmentDatasAsync();
+
+        /// <summary>案件ステータス一覧の取得</summary>
+        /// <returns>案件ステータス一覧</returns>
+        Task<ProjectStatus[]> GetProjectStatusDatasAsync();
+
+        /// <summary>課題ステータス一覧の取得</summary>
+        /// <returns>課題ステータス一覧</returns>
+        Task<IssueStatus[]> GetIssueStatusDatasAsync();
+
     }
 }
