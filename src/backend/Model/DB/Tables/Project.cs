@@ -18,8 +18,8 @@ namespace Model.DB.Tables
         [ForeignKey(nameof(Issue))]
         public int IssueID { get; set; }
 
-        /// <summary>タイトル</summary>
-        public string Title { get; set; } = string.Empty;
+        /// <summary>案件名</summary>
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>案件ステータス</summary>
         public virtual ProjectStatus ProjectStatus { get; set; } = null!;
