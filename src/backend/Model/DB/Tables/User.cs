@@ -14,26 +14,29 @@ namespace Model.Tables
 
         /// <summary>部署ID</summary>
         [ForeignKey(nameof(Department))]
-        public int DepartmentID { get; set; }
+        public Departments DepartmentID { get; set; }
+
+        /// <summary>部門</summary>
+        public virtual Department Department { get; set; } = null!;
 
         /// <summary>権限ID</summary>
         [ForeignKey(nameof(Authority))]
-        public int AuthorityID { get; set; }
+        public Authorities AuthorityID { get; set; }
+
+        /// <summary>権限</summary>
+        public virtual Authority Authority { get; set; } = null!;
+
+        /// <summary>ログインID</summary>
+        public string LoginID { get; set; } = string.Empty;
+
+        /// <summary>パスワード</summary>
+        public string Password { get; set; } = string.Empty;
 
         /// <summary>名前</summary>
         public string Neme { get; set; } = string.Empty;
 
         /// <summary>メールアドレス</summary>
         public string Mail { get; set; } = string.Empty;
-
-        /// <summary>パスワード</summary>
-        public string Password { get; set; } = string.Empty;
-
-        /// <summary>部門</summary>
-        public virtual Department Department { get; set; } = null!;
-
-        /// <summary>権限</summary>
-        public virtual Authority Authority { get; set; } = null!;
 
         /// <summary>メッセージを識別するためのキー情報の一覧</summary>
         public virtual ICollection<Message> Messages { get; set; } = null!;

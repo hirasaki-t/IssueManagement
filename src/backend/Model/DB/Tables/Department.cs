@@ -14,6 +14,9 @@ namespace Model.DB.Tables
         /// <summary>部署名</summary>
         public string Name { get; set; } = string.Empty;
 
+        /// <summary>案件を識別するためのキー情報の一覧</summary>
+        public virtual ICollection<Project> Project { get; set; } = null!;
+
         /// <summary>ユーザーを識別するためのキー情報の一覧</summary>
         public virtual ICollection<User> Users { get; set; } = null!;
     }
