@@ -1,14 +1,14 @@
-# DbContext繧ｯ繝ｩ繧ｹ繧堤ｶ呎価縺励◆繧ｯ繝ｩ繧ｹ縺悟ｭ伜惠縺吶ｋ繝励Ο繧ｸ繧ｧ繧ｯ繝亥錐
+# DbContextクラスを継承したクラスが存在するプロジェクト名
 $project = "Model"
 
-# 襍ｷ蜍墓凾縺ｫ蜻ｼ縺ｰ繧後ｋ繝励Ο繧ｸ繧ｧ繧ｯ繝亥錐
+# 起動時に呼ばれるプロジェクト名
 $startupProject = "WebApp"
 
-# DbContext繧ｯ繝ｩ繧ｹ繧堤ｶ呎価縺励◆繝槭う繧ｰ繝ｬ繝ｼ繧ｷ繝ｧ繝ｳ蟇ｾ雎｡縺ｮ繧ｯ繝ｩ繧ｹ
+# DbContextクラスを継承したマイグレーション対象のクラス
 $context = "SQLServerDataContext"
 
-# cmd繝輔か繝ｫ繝縺九ｉ隕九◆繧ｽ繝ｪ繝･繝ｼ繧ｷ繝ｧ繝ｳ繝輔か繝ｫ繝縺悟ｭ伜惠縺吶ｋ繝代せ縺ｸ縺ｮ逶ｸ蟇ｾ繝代せ
+# cmdフォルダから見たソリューションフォルダが存在するパスへの相対パス
 $solutionFolder = "../src/backend"
 
-# 讒区�舌�ｮ荳隕ｧ
+# 構成の一覧
 $configurations = @("Debug","Test","Release")

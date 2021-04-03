@@ -1,9 +1,9 @@
 $ErrorActionPreference = "Stop"
 $typeName = "System.Management.Automation.Host.ChoiceDescription"
-$addMigration = New-Object $typeName("ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®è¿½åŠ (&1)", "ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³åã‚’æŒ‡å®šã—ã¦ã€æ–°è¦ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¿½åŠ ã—ã¾ã™")
-$removeMigration = New-Object $typeName("ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®å‰Šé™¤(&2)", "ç›´å‰ã«è¿½åŠ ã—ãŸãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å‰Šé™¤ã—ã¾ã™")
-$updateMigration = New-Object $typeName("DBã®å®šç¾©ã‚’æœ€æ–°ã«æ›´æ–°(&3)", "DBã®å®šç¾©ã‚’æœ€æ–°ã®çŠ¶æ…‹ã«æ›´æ–°ã—ã¾ã™")
-$rollbackMigration = New-Object $typeName("DBã®å®šç¾©ã®å¤‰æ›´(&4)", "ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³åã‚’æŒ‡å®šã—ã¦ã€DBã®å®šç¾©ã‚’å¤‰æ›´ã—ã¾ã™")
+$addMigration = New-Object $typeName("ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“‚Ì’Ç‰Á(&1)", "ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“–¼‚ğw’è‚µ‚ÄAV‹Kƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“‚ğ’Ç‰Á‚µ‚Ü‚·")
+$removeMigration = New-Object $typeName("ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“‚Ìíœ(&2)", "’¼‘O‚É’Ç‰Á‚µ‚½ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“‚ğíœ‚µ‚Ü‚·")
+$updateMigration = New-Object $typeName("DB‚Ì’è‹`‚ğÅV‚ÉXV(&3)", "DB‚Ì’è‹`‚ğÅV‚Ìó‘Ô‚ÉXV‚µ‚Ü‚·")
+$rollbackMigration = New-Object $typeName("DB‚Ì’è‹`‚Ì•ÏX(&4)", "ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“–¼‚ğw’è‚µ‚ÄADB‚Ì’è‹`‚ğ•ÏX‚µ‚Ü‚·")
 
 $options = New-Object "System.Collections.ObjectModel.Collection``1[[$typeName]]"
 $options.add($addMigration)
@@ -11,7 +11,7 @@ $options.add($removeMigration)
 $options.add($updateMigration)
 $options.add($rollbackMigration)
 
-$result = $host.ui.PromptForChoice("æ“ä½œ", "å®Ÿè¡Œã™ã‚‹æ“ä½œã‚’é¸æŠã—ã¦ãã ã•ã„", $options, 0)
+$result = $host.ui.PromptForChoice("‘€ì", "Às‚·‚é‘€ì‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢", $options, 0)
 
 dotnet tool update -g dotnet-ef
 

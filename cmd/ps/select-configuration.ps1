@@ -1,9 +1,9 @@
 . "./ps/variable.ps1"
 
 function SelectConfiguration() {
-    $result = Read-Host ("[" + ($configurations -join "][") + "]ã‹ã‚‰ã€æ“ä½œã‚’å®Ÿè¡Œã™ã‚‹å¯¾è±¡ã®æ§‹æˆã‚’é¸æŠžã—ã¦ãã ã•ã„")
+    $result = Read-Host ("[" + ($configurations -join "][") + "]‚©‚çA‘€ì‚ðŽÀs‚·‚é‘ÎÛ‚Ì\¬‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢")
     if ($result | Select-String ("^(?:(?:" + ($configurations -join ")|(?:") + "))$") -Quiet) {
         return $result
     }
-    throw "æ­£ã—ããªã„æ§‹æˆãŒé¸æŠžã•ã‚Œã¾ã—ãŸ" 
+    throw "³‚µ‚­‚È‚¢\¬‚ª‘I‘ð‚³‚ê‚Ü‚µ‚½" 
 }

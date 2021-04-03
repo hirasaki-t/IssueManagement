@@ -3,7 +3,7 @@
 . "./ps/select-configuration.ps1"
 
 $configuration = SelectConfiguration
-$migrationName = Read-Host "蠕ｩ蜈�繧定｡後≧繝槭う繧ｰ繝ｬ繝ｼ繧ｷ繝ｧ繝ｳ蜷阪ｒ謖�螳壹＠縺ｦ縺上□縺輔＞"
+$migrationName = Read-Host "復元を行うマイグレーション名を指定してください"
 
 SetLocation
 dotnet ef database update $migrationName --verbose --project:$project --startup-project:$startupProject --context:$context --configuration:$configuration

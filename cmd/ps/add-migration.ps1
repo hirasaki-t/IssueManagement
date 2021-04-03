@@ -1,7 +1,7 @@
 . "./ps/set-location.ps1"
 . "./ps/variable.ps1"
 
-$migrationName = Read-Host "菴懈�舌☆繧九�槭う繧ｰ繝ｬ繝ｼ繧ｷ繝ｧ繝ｳ蜷阪ｒ險ｭ螳壹＠縺ｦ縺上□縺輔＞"
+$migrationName = Read-Host "作成するマイグレーション名を設定してください"
 if ([string]::IsNullOrWhiteSpace($migrationName)) {
     exit
 }

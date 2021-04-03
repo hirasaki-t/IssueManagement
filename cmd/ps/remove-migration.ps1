@@ -1,8 +1,8 @@
 . "./ps/set-location.ps1"
 . "./ps/variable.ps1"
 
-Write-Output "æœ€å¾Œã«è¿½åŠ ã•ã‚ŒãŸãƒžã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å‰Šé™¤ã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ"
-$accept = Read-Host "å•é¡Œãªã‘ã‚Œã°yã‚’å…¥åŠ›å¾Œã€ã‚¨ãƒ³ã‚¿ãƒ¼ã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ãã ã•ã„"
+Write-Output "ÅŒã‚É’Ç‰Á‚³‚ê‚½ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“‚ðíœ‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H"
+$accept = Read-Host "–â‘è‚È‚¯‚ê‚Îy‚ð“ü—ÍŒãAƒGƒ“ƒ^[ƒL[‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢"
 if ($accept -ne "y") {
     exit
 }
