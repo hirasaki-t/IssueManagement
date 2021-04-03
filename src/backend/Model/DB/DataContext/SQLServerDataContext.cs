@@ -14,7 +14,7 @@ namespace Model.DB.DataContext
         /// <param name="config">設定オブジェクト</param>
         public SQLServerDataContext(IOptions<Config> config)
         {
-            connectionString = config.Value.ConnectionStrings;
+            connectionString = config.Value.ConnectionString;
         }
 
         /// <summary>設定値の変更処理</summary>
