@@ -10,7 +10,7 @@ using Model.DB.DataContext;
 namespace Model.Migrations
 {
     [DbContext(typeof(SQLServerDataContext))]
-    [Migration("20210403025744_Init")]
+    [Migration("20210404052437_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,36 @@ namespace Model.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("DepartmentProject", b =>
+                {
+                    b.Property<int>("DepartmentID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProjectID")
+                        .HasColumnType("int");
+
+                    b.HasKey("DepartmentID", "ProjectID");
+
+                    b.HasIndex("ProjectID");
+
+                    b.ToTable("DepartmentProject");
+                });
+
+            modelBuilder.Entity("MessageUser", b =>
+                {
+                    b.Property<int>("MessagesID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("MessagesID", "UserID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("MessageUser");
+                });
 
             modelBuilder.Entity("Model.DB.Tables.Authority", b =>
                 {
@@ -83,15 +113,12 @@ namespace Model.Migrations
                     b.Property<int>("IssueStatusID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Update")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("ProjectID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -158,14 +185,12 @@ namespace Model.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UserID")
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("IssueID");
-
-                    b.HasIndex("UserID");
 
                     b.ToTable("Messages");
                 });
@@ -191,8 +216,6 @@ namespace Model.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("DepartmentID");
 
                     b.HasIndex("ProjectStatusID");
 
@@ -303,6 +326,36 @@ namespace Model.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("DepartmentProject", b =>
+                {
+                    b.HasOne("Model.DB.Tables.Department", null)
+                        .WithMany()
+                        .HasForeignKey("DepartmentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Model.DB.Tables.Project", null)
+                        .WithMany()
+                        .HasForeignKey("ProjectID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MessageUser", b =>
+                {
+                    b.HasOne("Model.DB.Tables.Message", null)
+                        .WithMany()
+                        .HasForeignKey("MessagesID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Model.Tables.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Model.DB.Tables.Issue", b =>
                 {
                     b.HasOne("Model.DB.Tables.IssueStatus", "IssueStatus")
@@ -330,28 +383,16 @@ namespace Model.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.Tables.User", null)
-                        .WithMany("Messages")
-                        .HasForeignKey("UserID");
-
                     b.Navigation("Issue");
                 });
 
             modelBuilder.Entity("Model.DB.Tables.Project", b =>
                 {
-                    b.HasOne("Model.DB.Tables.Department", "Department")
-                        .WithMany("Project")
-                        .HasForeignKey("DepartmentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Model.DB.Tables.ProjectStatus", "ProjectStatus")
                         .WithMany("Projects")
                         .HasForeignKey("ProjectStatusID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Department");
 
                     b.Navigation("ProjectStatus");
                 });
@@ -382,8 +423,6 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.DB.Tables.Department", b =>
                 {
-                    b.Navigation("Project");
-
                     b.Navigation("Users");
                 });
 
@@ -405,11 +444,6 @@ namespace Model.Migrations
             modelBuilder.Entity("Model.DB.Tables.ProjectStatus", b =>
                 {
                     b.Navigation("Projects");
-                });
-
-            modelBuilder.Entity("Model.Tables.User", b =>
-                {
-                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

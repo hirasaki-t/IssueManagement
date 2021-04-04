@@ -23,9 +23,6 @@ namespace Model.DB.Tables
         [ForeignKey(nameof(Department))]
         public Departments DepartmentID { get; set; }
 
-        /// <summary>部署</summary>
-        public virtual Department Department { get; set; } = null!;
-
         /// <summary>案件名</summary>
         public string Name { get; set; } = string.Empty;
 
@@ -34,5 +31,8 @@ namespace Model.DB.Tables
 
         /// <summary>課題を識別するためのキー情報の一覧</summary>
         public virtual ICollection<Issue> Issue { get; set; } = null!;
+
+        /// <summary>部署を識別するためのキー情報の一覧</summary>
+        public virtual ICollection<Department> Department { get; set; } = null!;
     }
 }
