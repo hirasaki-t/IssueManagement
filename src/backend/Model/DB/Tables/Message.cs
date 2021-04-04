@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model.Tables;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -18,14 +20,9 @@ namespace Model.DB.Tables
         /// <summary>課題</summary>
         public virtual Issue Issue { get; set; } = null!;
 
-        // TODO:中間テーブルに関する検討の後に修正を行う
-
         /// <summary>ユーザーID</summary>
-        //[ForeignKey(nameof(User))]
-        //public int UserID { get; set; }
-
-        /// <summary>ユーザー</summary>
-        //public virtual User User { get; set; } = null!;
+        [ForeignKey(nameof(User))]
+        public int UserID { get; set; }
 
         /// <summary>投稿メッセージ</summary>
         public string PostMessage { get; set; } = string.Empty;
@@ -35,5 +32,8 @@ namespace Model.DB.Tables
 
         /// <summary>更新日付</summary>
         public DateTime UpdateDate { get; set; }
+
+        /// <summary>メッセージを識別するためのキー情報の一覧</summary>
+        public virtual ICollection<User> User { get; set; } = null!;
     }
 }
