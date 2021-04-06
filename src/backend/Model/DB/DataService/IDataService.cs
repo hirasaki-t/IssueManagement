@@ -61,5 +61,25 @@ namespace Model.DB.DataService
         /// <param name="id">ID</param>
         /// <param name="detail">案件詳細</param>
         Task UpdateProjectDetailAsync(int id, string detail);
+
+        /// <summary>課題一覧の取得</summary>
+        /// <returns>課題一覧</returns>
+        Task<Issue[]> GetIssueDatasAsync();
+
+        /// <summary>課題の新規追加</summary>
+        /// <param name="projectID">案件ID</param>
+        /// <param name="issueStatuses">課題ステータス</param>
+        /// <param name="name">課題名</param>
+        Task AddIssueDataAsync(int projectID, IssueStatuses issueStatuses, string name);
+
+        /// <summary>課題の更新</summary>
+        /// <param name="id">ID</param>
+        /// <param name="issueStatuses">課題ステータス</param>
+        /// <param name="name">課題名</param>
+        Task UpdateIssueDataAsync(int id, IssueStatuses issueStatuses, string name);
+
+        /// <summary>課題の削除</summary>
+        /// <param name="id">ID</param>
+        Task DeleteIssueDataAsync(int id);
     }
 }
