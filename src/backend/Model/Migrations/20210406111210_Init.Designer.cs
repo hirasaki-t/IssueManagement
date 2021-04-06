@@ -10,7 +10,7 @@ using Model.DB.DataContext;
 namespace Model.Migrations
 {
     [DbContext(typeof(SQLServerDataContext))]
-    [Migration("20210404052437_Init")]
+    [Migration("20210406111210_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,32 +23,17 @@ namespace Model.Migrations
 
             modelBuilder.Entity("DepartmentProject", b =>
                 {
-                    b.Property<int>("DepartmentID")
+                    b.Property<int>("DepartmentsID")
                         .HasColumnType("int");
 
                     b.Property<int>("ProjectID")
                         .HasColumnType("int");
 
-                    b.HasKey("DepartmentID", "ProjectID");
+                    b.HasKey("DepartmentsID", "ProjectID");
 
                     b.HasIndex("ProjectID");
 
                     b.ToTable("DepartmentProject");
-                });
-
-            modelBuilder.Entity("MessageUser", b =>
-                {
-                    b.Property<int>("MessagesID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
-                    b.HasKey("MessagesID", "UserID");
-
-                    b.HasIndex("UserID");
-
-                    b.ToTable("MessageUser");
                 });
 
             modelBuilder.Entity("Model.DB.Tables.Authority", b =>
@@ -80,7 +65,9 @@ namespace Model.Migrations
             modelBuilder.Entity("Model.DB.Tables.Department", b =>
                 {
                     b.Property<int>("ID")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -120,11 +107,16 @@ namespace Model.Migrations
                     b.Property<int>("ProjectID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
                     b.HasIndex("IssueStatusID");
 
                     b.HasIndex("ProjectID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("Issues");
                 });
@@ -192,6 +184,8 @@ namespace Model.Migrations
 
                     b.HasIndex("IssueID");
 
+                    b.HasIndex("UserID");
+
                     b.ToTable("Messages");
                 });
 
@@ -205,8 +199,9 @@ namespace Model.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DepartmentID")
-                        .HasColumnType("int");
+                    b.Property<string>("Detail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -288,6 +283,26 @@ namespace Model.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Model.DB.Tables.SignIn", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("PassWord")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SignInID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("SignIns");
+                });
+
             modelBuilder.Entity("Model.Tables.User", b =>
                 {
                     b.Property<int>("ID")
@@ -298,12 +313,11 @@ namespace Model.Migrations
                     b.Property<int>("AuthorityID")
                         .HasColumnType("int");
 
-                    b.Property<int>("DepartmentID")
+                    b.Property<int>("Department")
                         .HasColumnType("int");
 
-                    b.Property<string>("LoginID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DepartmentID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Mail")
                         .IsRequired()
@@ -313,15 +327,16 @@ namespace Model.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("SignInID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("AuthorityID");
 
                     b.HasIndex("DepartmentID");
+
+                    b.HasIndex("SignInID");
 
                     b.ToTable("Users");
                 });
@@ -330,28 +345,13 @@ namespace Model.Migrations
                 {
                     b.HasOne("Model.DB.Tables.Department", null)
                         .WithMany()
-                        .HasForeignKey("DepartmentID")
+                        .HasForeignKey("DepartmentsID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Model.DB.Tables.Project", null)
                         .WithMany()
                         .HasForeignKey("ProjectID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MessageUser", b =>
-                {
-                    b.HasOne("Model.DB.Tables.Message", null)
-                        .WithMany()
-                        .HasForeignKey("MessagesID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Model.Tables.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -370,6 +370,10 @@ namespace Model.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Model.Tables.User", null)
+                        .WithMany("Issue")
+                        .HasForeignKey("UserID");
+
                     b.Navigation("IssueStatus");
 
                     b.Navigation("Project");
@@ -383,7 +387,15 @@ namespace Model.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Model.Tables.User", "User")
+                        .WithMany("Messages")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Issue");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Model.DB.Tables.Project", b =>
@@ -405,15 +417,21 @@ namespace Model.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.DB.Tables.Department", "Department")
-                        .WithMany("Users")
+                    b.HasOne("Model.DB.Tables.Department", null)
+                        .WithMany("User")
                         .HasForeignKey("DepartmentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Model.DB.Tables.SignIn", "SignIn")
+                        .WithMany("User")
+                        .HasForeignKey("SignInID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Authority");
 
-                    b.Navigation("Department");
+                    b.Navigation("SignIn");
                 });
 
             modelBuilder.Entity("Model.DB.Tables.Authority", b =>
@@ -423,7 +441,7 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.DB.Tables.Department", b =>
                 {
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Model.DB.Tables.Issue", b =>
@@ -444,6 +462,18 @@ namespace Model.Migrations
             modelBuilder.Entity("Model.DB.Tables.ProjectStatus", b =>
                 {
                     b.Navigation("Projects");
+                });
+
+            modelBuilder.Entity("Model.DB.Tables.SignIn", b =>
+                {
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Model.Tables.User", b =>
+                {
+                    b.Navigation("Issue");
+
+                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

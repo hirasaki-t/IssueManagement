@@ -19,12 +19,11 @@ namespace Model.DB.Tables
         /// <summary>案件ステータス</summary>
         public virtual ProjectStatus ProjectStatus { get; set; } = null!;
 
-        /// <summary>部署ID</summary>
-        [ForeignKey(nameof(Department))]
-        public Departments DepartmentID { get; set; }
-
         /// <summary>案件名</summary>
         public string Name { get; set; } = string.Empty;
+
+        /// <summary>案件詳細</summary>
+        public string Detail { get; set; } = string.Empty;
 
         /// <summary>作成日</summary>
         public DateTime CreateDate { get; set; }

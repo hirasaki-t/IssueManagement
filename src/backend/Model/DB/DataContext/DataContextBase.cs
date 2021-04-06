@@ -8,29 +8,32 @@ namespace Model.DB.DataContext
 {
     public abstract class DataContextBase : DbContext, IDataContext
     {
-        // <summary>権限</summary>
+        /// <summary>権限</summary>
         public DbSet<Authority> Authorities => Set<Authority>();
 
-        // <summary>部署</summary>
+        /// <summary>部署</summary>
         public DbSet<Department> Departments => Set<Department>();
 
-        // <summary>課題</summary>
+        /// <summary>課題</summary>
         public DbSet<Issue> Issues => Set<Issue>();
 
-        // <summary>課題ステータス</summary>
+        /// <summary>課題ステータス</summary>
         public DbSet<IssueStatus> IssueStatuses => Set<IssueStatus>();
 
-        // <summary>メッセージ</summary>
+        /// <summary>メッセージ</summary>
         public DbSet<Message> Messages => Set<Message>();
 
-        // <summary>案件</summary>
+        /// <summary>案件</summary>
         public DbSet<Project> Projects => Set<Project>();
 
-        // <summary>案件ステータス</summary>
+        /// <summary>案件ステータス</summary>
         public DbSet<ProjectStatus> ProjectStatuses => Set<ProjectStatus>();
 
-        // <summary>ユーザー</summary>
+        /// <summary>ユーザー</summary>
         public DbSet<User> Users => Set<User>();
+
+        /// <summary>サインイン</summary>
+        public DbSet<SignIn> SignIns => Set<SignIn>();
 
         /// <inheritdoc/>
         public Task BeginTransactionAsync()
@@ -82,8 +85,8 @@ namespace Model.DB.DataContext
                 new() { ID = X.Authorities.General, Name = "一般ユーザー" });
 
             modelBuilder.Entity<Department>().HasData(
-                new() { ID = X.Departments.Development, Name = "開発" },
-                new() { ID = X.Departments.Sales, Name = "営業" });
+                new() { ID = 1, Name = "開発" },
+                new() { ID = 2, Name = "営業" });
 
             modelBuilder.Entity<IssueStatus>().HasData(
                 new() { ID = X.IssueStatuses.Unsolved, Status = "未解決" },

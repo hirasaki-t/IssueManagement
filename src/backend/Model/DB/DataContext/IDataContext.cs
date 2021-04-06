@@ -11,29 +11,32 @@ namespace Model.DB.DataContext
     /// <summary>データコンテキスト</summary>
     public interface IDataContext : IDisposable, IAsyncDisposable
     {
-        // <summary>権限</summary>
+        /// <summary>権限</summary>
         public DbSet<Authority> Authorities { get; }
 
-        // <summary>部署</summary>
+        /// <summary>部署</summary>
         public DbSet<Department> Departments { get; }
 
-        // <summary>課題</summary>
+        /// <summary>課題</summary>
         public DbSet<Issue> Issues { get; }
 
-        // <summary>課題ステータス</summary>
+        /// <summary>課題ステータス</summary>
         public DbSet<IssueStatus> IssueStatuses { get; }
 
-        // <summary>メッセージ</summary>
+        /// <summary>メッセージ</summary>
         public DbSet<Message> Messages { get; }
 
-        // <summary>案件</summary>
+        /// <summary>案件</summary>
         public DbSet<Project> Projects { get; }
 
-        // <summary>案件ステータス</summary>
+        /// <summary>案件ステータス</summary>
         public DbSet<ProjectStatus> ProjectStatuses { get; }
 
-        // <summary>ユーザー</summary>
+        /// <summary>ユーザー</summary>
         public DbSet<User> Users { get; }
+
+        /// <summary>サインイン</summary>
+        public DbSet<SignIn> SignIns { get; }
 
         /// <summary>トランザクションを開始する</summary>
         public Task BeginTransactionAsync();

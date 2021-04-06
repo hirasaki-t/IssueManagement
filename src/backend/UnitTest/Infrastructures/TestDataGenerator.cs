@@ -12,8 +12,10 @@ namespace UnitTest.Infrastructures
             var fixture = new Fixture();
             return fixture
                 .Build<Project>()
-                .Without(x => x.Issue)
+                .Without(x => x.ID)
+                .Without(x => x.Department)
                 .Without(x => x.ProjectStatus)
+                .Without(x => x.Issue)
                 .CreateMany(count).ToArray();
         }
 

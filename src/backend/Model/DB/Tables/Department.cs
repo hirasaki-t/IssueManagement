@@ -9,7 +9,7 @@ namespace Model.DB.Tables
     {
         /// <summary>ID</summary>
         [Key]
-        public Departments ID { get; set; }
+        public int ID { get; set; }
 
         /// <summary>部署名</summary>
         public string Name { get; set; } = string.Empty;
@@ -18,6 +18,6 @@ namespace Model.DB.Tables
         public virtual ICollection<Project> Project { get; set; } = null!;
 
         /// <summary>ユーザーを識別するためのキー情報の一覧</summary>
-        public virtual ICollection<User> Users { get; set; } = null!;
+        public virtual ICollection<User> User { get; set; } = null!;
     }
 }

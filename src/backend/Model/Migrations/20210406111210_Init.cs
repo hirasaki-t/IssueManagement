@@ -23,7 +23,8 @@ namespace Model.Migrations
                 name: "Departments",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -56,15 +57,51 @@ namespace Model.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SignIns",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SignInID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PassWord = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SignIns", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Projects",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProjectStatusID = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Detail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Projects", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Projects_ProjectStatuses_ProjectStatusID",
+                        column: x => x.ProjectStatusID,
+                        principalTable: "ProjectStatuses",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DepartmentID = table.Column<int>(type: "int", nullable: false),
+                    Department = table.Column<int>(type: "int", nullable: false),
                     AuthorityID = table.Column<int>(type: "int", nullable: false),
-                    LoginID = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SignInID = table.Column<int>(type: "int", nullable: false),
                     Neme = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Mail = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -83,26 +120,10 @@ namespace Model.Migrations
                         principalTable: "Departments",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Projects",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProjectStatusID = table.Column<int>(type: "int", nullable: false),
-                    DepartmentID = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Projects", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Projects_ProjectStatuses_ProjectStatusID",
-                        column: x => x.ProjectStatusID,
-                        principalTable: "ProjectStatuses",
+                        name: "FK_Users_SignIns_SignInID",
+                        column: x => x.SignInID,
+                        principalTable: "SignIns",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -111,15 +132,15 @@ namespace Model.Migrations
                 name: "DepartmentProject",
                 columns: table => new
                 {
-                    DepartmentID = table.Column<int>(type: "int", nullable: false),
+                    DepartmentsID = table.Column<int>(type: "int", nullable: false),
                     ProjectID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DepartmentProject", x => new { x.DepartmentID, x.ProjectID });
+                    table.PrimaryKey("PK_DepartmentProject", x => new { x.DepartmentsID, x.ProjectID });
                     table.ForeignKey(
-                        name: "FK_DepartmentProject_Departments_DepartmentID",
-                        column: x => x.DepartmentID,
+                        name: "FK_DepartmentProject_Departments_DepartmentsID",
+                        column: x => x.DepartmentsID,
                         principalTable: "Departments",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -139,7 +160,8 @@ namespace Model.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProjectID = table.Column<int>(type: "int", nullable: false),
                     IssueStatusID = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -156,6 +178,12 @@ namespace Model.Migrations
                         principalTable: "Projects",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Issues_Users_UserID",
+                        column: x => x.UserID,
+                        principalTable: "Users",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -179,26 +207,8 @@ namespace Model.Migrations
                         principalTable: "Issues",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MessageUser",
-                columns: table => new
-                {
-                    MessagesID = table.Column<int>(type: "int", nullable: false),
-                    UserID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MessageUser", x => new { x.MessagesID, x.UserID });
                     table.ForeignKey(
-                        name: "FK_MessageUser_Messages_MessagesID",
-                        column: x => x.MessagesID,
-                        principalTable: "Messages",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MessageUser_Users_UserID",
+                        name: "FK_Messages_Users_UserID",
                         column: x => x.UserID,
                         principalTable: "Users",
                         principalColumn: "ID",
@@ -267,13 +277,18 @@ namespace Model.Migrations
                 column: "ProjectID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Issues_UserID",
+                table: "Issues",
+                column: "UserID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Messages_IssueID",
                 table: "Messages",
                 column: "IssueID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MessageUser_UserID",
-                table: "MessageUser",
+                name: "IX_Messages_UserID",
+                table: "Messages",
                 column: "UserID");
 
             migrationBuilder.CreateIndex(
@@ -290,6 +305,11 @@ namespace Model.Migrations
                 name: "IX_Users_DepartmentID",
                 table: "Users",
                 column: "DepartmentID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_SignInID",
+                table: "Users",
+                column: "SignInID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -298,22 +318,10 @@ namespace Model.Migrations
                 name: "DepartmentProject");
 
             migrationBuilder.DropTable(
-                name: "MessageUser");
-
-            migrationBuilder.DropTable(
                 name: "Messages");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
                 name: "Issues");
-
-            migrationBuilder.DropTable(
-                name: "Authorities");
-
-            migrationBuilder.DropTable(
-                name: "Departments");
 
             migrationBuilder.DropTable(
                 name: "IssueStatuses");
@@ -322,7 +330,19 @@ namespace Model.Migrations
                 name: "Projects");
 
             migrationBuilder.DropTable(
+                name: "Users");
+
+            migrationBuilder.DropTable(
                 name: "ProjectStatuses");
+
+            migrationBuilder.DropTable(
+                name: "Authorities");
+
+            migrationBuilder.DropTable(
+                name: "Departments");
+
+            migrationBuilder.DropTable(
+                name: "SignIns");
         }
     }
 }

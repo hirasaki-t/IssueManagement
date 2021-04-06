@@ -14,10 +14,10 @@ namespace Model.Tables
 
         /// <summary>部署ID</summary>
         [ForeignKey(nameof(Department))]
-        public Departments DepartmentID { get; set; }
+        public int DepartmentID { get; set; }
 
         /// <summary>部門</summary>
-        public virtual Department Department { get; set; } = null!;
+        public virtual int Department { get; set; }
 
         /// <summary>権限ID</summary>
         [ForeignKey(nameof(Authority))]
@@ -26,17 +26,21 @@ namespace Model.Tables
         /// <summary>権限</summary>
         public virtual Authority Authority { get; set; } = null!;
 
-        /// <summary>ログインID</summary>
-        public string LoginID { get; set; } = string.Empty;
+        /// <summary>サインインID</summary>
+        [ForeignKey(nameof(SignIn))]
+        public int SignInID { get; set; }
 
-        /// <summary>パスワード</summary>
-        public string Password { get; set; } = string.Empty;
+        /// <summary>サインイン</summary>
+        public virtual SignIn SignIn { get; set; } = null!;
 
         /// <summary>名前</summary>
         public string Neme { get; set; } = string.Empty;
 
         /// <summary>メールアドレス</summary>
         public string Mail { get; set; } = string.Empty;
+
+        /// <summary>課題を識別するためのキー情報の一覧</summary>
+        public virtual ICollection<Issue> Issue { get; set; } = null!;
 
         /// <summary>メッセージを識別するためのキー情報の一覧</summary>
         public virtual ICollection<Message> Messages { get; set; } = null!;
