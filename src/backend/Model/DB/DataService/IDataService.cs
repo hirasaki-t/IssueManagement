@@ -1,4 +1,4 @@
-using Model.DB.Tables;
+﻿using Model.DB.Tables;
 using Model.Tables;
 using System;
 using System.Threading;
@@ -36,5 +36,30 @@ namespace Model.DB.DataService
         /// <returns>課題ステータス一覧</returns>
         Task<IssueStatus[]> GetIssueStatusDatasAsync();
 
+        /// <summary>案件一覧の取得</summary>
+        /// <returns>案件一覧</returns>
+        Task<Project[]> GetProjectDatasAsync();
+
+        /// <summary>案件の新規追加</summary>
+        /// <param name="departmentsIDs">部署ID</param>
+        /// <param name="projectStatusID">案件ステータスID</param>
+        /// <param name="name">案件名</param>
+        Task AddProjectDataAsync(int[] departmentsIDs, ProjectStatuses projectStatusID, string name);
+
+        /// <summary>案件の更新</summary>
+        /// <param name="id">ID</param>
+        /// <param name="departmentsIDs">部署ID</param>
+        /// <param name="projectStatuses">案件ステータス</param>
+        /// <param name="name">案件名</param>
+        Task UpdateProjectDataAsync(int id, int[] departmentsIDs, ProjectStatuses projectStatuses, string name);
+
+        /// <summary>案件の削除</summary>
+        /// <param name="id">ID</param>
+        Task DeleteProjectDataAsync(int id);
+
+        /// <summary>案件詳細の更新</summary>
+        /// <param name="id">ID</param>
+        /// <param name="detail">案件詳細</param>
+        Task UpdateProjectDetailAsync(int id, string detail);
     }
 }
