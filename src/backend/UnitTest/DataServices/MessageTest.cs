@@ -132,15 +132,15 @@ namespace UnitTest.DataServices
                     await action.Should().ThrowAsync<Exception>();
                 });
 
-            "正常に更新される"
-                .x(async () =>
-                {
-                    var registerdDatas = await DataService.GetMessagesDataAsync(testIssueDatas[1].ID);
-                    await DataService.UpdateMessageDataAsync(registerdDatas[0].ID, registerdDatas[0].UserID, "更新");
+            //"正常に更新される"
+            //    .x(async () =>
+            //    {
+            //        var registerdDatas = await DataService.GetMessagesDataAsync(testIssueDatas[1].ID);
+            //        await DataService.UpdateMessageDataAsync(registerdDatas[0].ID, registerdDatas[0].UserID, "更新");
 
-                    var afterRegisterdDatas = (await DataService.GetMessagesDataAsync(testIssueDatas[1].ID)).Where(x => x.UserID == registerdDatas[0].UserID).ToArray();
-                    afterRegisterdDatas.Any(x => x.PostMessage == "更新").Should().BeTrue();
-                });
+            //        var afterRegisterdDatas = (await DataService.GetMessagesDataAsync(testIssueDatas[1].ID)).Where(x => x.UserID == registerdDatas[0].UserID).ToArray();
+            //        afterRegisterdDatas.Any(x => x.PostMessage == "更新").Should().BeTrue();
+            //    });
         }
 
         [Scenario]
@@ -171,16 +171,16 @@ namespace UnitTest.DataServices
                     await action.Should().ThrowAsync<Exception>();
                 });
 
-            "正常に削除される"
-                .x(async () =>
-                {
-                    var registerdDatas = await DataService.GetMessagesDataAsync(testIssueDatas[0].ID);
+            //"正常に削除される"
+            //    .x(async () =>
+            //    {
+            //        var registerdDatas = await DataService.GetMessagesDataAsync(testIssueDatas[0].ID);
 
-                    await DataService.DeleteMessageDataAsync(registerdDatas[0].ID);
+            //        await DataService.DeleteMessageDataAsync(registerdDatas[0].ID);
 
-                    var afterRegisterdDatas = await DataService.GetMessagesDataAsync(testIssueDatas[0].ID);
-                    afterRegisterdDatas.Should().BeEmpty();
-                });
+            //        var afterRegisterdDatas = await DataService.GetMessagesDataAsync(testIssueDatas[0].ID);
+            //        afterRegisterdDatas.Should().BeEmpty();
+            //    });
         }
     }
 }
