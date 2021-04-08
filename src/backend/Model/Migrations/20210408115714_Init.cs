@@ -99,7 +99,6 @@ namespace Model.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DepartmentID = table.Column<int>(type: "int", nullable: false),
-                    Department = table.Column<int>(type: "int", nullable: false),
                     AuthorityID = table.Column<int>(type: "int", nullable: false),
                     SignInID = table.Column<int>(type: "int", nullable: false),
                     Neme = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -132,15 +131,15 @@ namespace Model.Migrations
                 name: "DepartmentProject",
                 columns: table => new
                 {
-                    DepartmentsID = table.Column<int>(type: "int", nullable: false),
+                    DepartmentID = table.Column<int>(type: "int", nullable: false),
                     ProjectID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DepartmentProject", x => new { x.DepartmentsID, x.ProjectID });
+                    table.PrimaryKey("PK_DepartmentProject", x => new { x.DepartmentID, x.ProjectID });
                     table.ForeignKey(
-                        name: "FK_DepartmentProject_Departments_DepartmentsID",
-                        column: x => x.DepartmentsID,
+                        name: "FK_DepartmentProject_Departments_DepartmentID",
+                        column: x => x.DepartmentID,
                         principalTable: "Departments",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -159,9 +158,9 @@ namespace Model.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProjectID = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false),
                     IssueStatusID = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserID = table.Column<int>(type: "int", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -212,7 +211,7 @@ namespace Model.Migrations
                         column: x => x.UserID,
                         principalTable: "Users",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -309,7 +308,8 @@ namespace Model.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Users_SignInID",
                 table: "Users",
-                column: "SignInID");
+                column: "SignInID",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
