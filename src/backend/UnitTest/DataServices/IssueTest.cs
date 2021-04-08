@@ -19,12 +19,15 @@ namespace UnitTest.DataServices
         [Scenario]
         public void GetIssueDatasAsyncTest()
         {
+            var testUserDatas = TestDataGenerator.GetUserTestDatas(10);
             var testProjectDatas = TestDataGenerator.GetProjectTestDatas(10);
             var testIssueDatas = TestDataGenerator.GetIssueTestDatas(10, Enumerable.Range(1, 10).ToArray());
 
             "DB準備"
                 .x(async () =>
                 {
+                    await DataContext.Users.AddRangeAsync(testUserDatas);
+                    await DataContext.SaveChangesAsync();
                     await DataContext.Projects.AddRangeAsync(testProjectDatas);
                     await DataContext.SaveChangesAsync();
                     await DataContext.Issues.AddRangeAsync(testIssueDatas);
@@ -39,6 +42,7 @@ namespace UnitTest.DataServices
                     {
                         ID = x.ID,
                         ProjectID = x.ProjectID,
+                        UserID = x.UserID,
                         IssueStatusID = x.IssueStatusID,
                         Name = x.Name
                     }).Should().BeEquivalentTo(registerdDatas);
@@ -48,12 +52,15 @@ namespace UnitTest.DataServices
         [Scenario]
         public void AddIssueDataAsyncTest()
         {
+            var testUserDatas = TestDataGenerator.GetUserTestDatas(10);
             var testProjectDatas = TestDataGenerator.GetProjectTestDatas(10);
             var testIssueDatas = TestDataGenerator.GetIssueTestDatas(10, Enumerable.Range(1, 10).ToArray());
 
             "DB準備"
                 .x(async () =>
                 {
+                    await DataContext.Users.AddRangeAsync(testUserDatas);
+                    await DataContext.SaveChangesAsync();
                     await DataContext.Projects.AddRangeAsync(testProjectDatas);
                     await DataContext.SaveChangesAsync();
                     await DataContext.Issues.AddRangeAsync(testIssueDatas);
@@ -63,21 +70,28 @@ namespace UnitTest.DataServices
             "案件IDが未登録の値の場合エラー"
                 .x(async () =>
                 {
-                    Func<Task> action = () => DataService.AddIssueDataAsync(100, IssueStatuses.Unsolved, "test");
+                    Func<Task> action = () => DataService.AddIssueDataAsync(100, 4, IssueStatuses.Unsolved, "test");
+                    await action.Should().ThrowAsync<Exception>();
+                });
+
+            "ユーザーIDが未登録の値の場合エラー"
+                .x(async () =>
+                {
+                    Func<Task> action = () => DataService.AddIssueDataAsync(1, 50, IssueStatuses.Unsolved, "test");
                     await action.Should().ThrowAsync<Exception>();
                 });
 
             "課題ステータスIDが未登録の値の場合エラー"
                 .x(async () =>
                 {
-                    Func<Task> action = () => DataService.AddIssueDataAsync(1, (IssueStatuses)50, "test");
+                    Func<Task> action = () => DataService.AddIssueDataAsync(1, 2, (IssueStatuses)50, "test");
                     await action.Should().ThrowAsync<Exception>();
                 });
 
             "正常に登録される"
                 .x(async () =>
                 {
-                    await DataService.AddIssueDataAsync(1, IssueStatuses.Unsolved, "test");
+                    await DataService.AddIssueDataAsync(1, 5, IssueStatuses.Unsolved, "test");
 
                     var registerdDatas = await DataService.GetIssueDatasAsync();
                     registerdDatas[10].IssueStatusID.Should().Be(IssueStatuses.Unsolved);
@@ -88,12 +102,15 @@ namespace UnitTest.DataServices
         [Scenario]
         public void UpdateIssueDataAsyncTest()
         {
+            var testUserDatas = TestDataGenerator.GetUserTestDatas(10);
             var testProjectDatas = TestDataGenerator.GetProjectTestDatas(10);
             var testIssueDatas = TestDataGenerator.GetIssueTestDatas(10, Enumerable.Range(1, 10).ToArray());
 
             "DB準備"
                 .x(async () =>
                 {
+                    await DataContext.Users.AddRangeAsync(testUserDatas);
+                    await DataContext.SaveChangesAsync();
                     await DataContext.Projects.AddRangeAsync(testProjectDatas);
                     await DataContext.SaveChangesAsync();
                     await DataContext.Issues.AddRangeAsync(testIssueDatas);
@@ -128,12 +145,15 @@ namespace UnitTest.DataServices
         [Scenario]
         public void DeleteIssueDataAsyncTest()
         {
+            var testUserDatas = TestDataGenerator.GetUserTestDatas(10);
             var testProjectDatas = TestDataGenerator.GetProjectTestDatas(10);
             var testIssueDatas = TestDataGenerator.GetIssueTestDatas(10, Enumerable.Range(1, 10).ToArray());
 
             "DB準備"
                 .x(async () =>
                 {
+                    await DataContext.Users.AddRangeAsync(testUserDatas);
+                    await DataContext.SaveChangesAsync();
                     await DataContext.Projects.AddRangeAsync(testProjectDatas);
                     await DataContext.SaveChangesAsync();
                     await DataContext.Issues.AddRangeAsync(testIssueDatas);
