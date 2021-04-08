@@ -68,9 +68,10 @@ namespace Model.DB.DataService
 
         /// <summary>課題の新規追加</summary>
         /// <param name="projectID">案件ID</param>
+        /// <param name="userID">ユーザーID</param>
         /// <param name="issueStatuses">課題ステータス</param>
         /// <param name="name">課題名</param>
-        Task AddIssueDataAsync(int projectID, IssueStatuses issueStatuses, string name);
+        Task AddIssueDataAsync(int projectID, int userID, IssueStatuses issueStatuses, string name);
 
         /// <summary>課題の更新</summary>
         /// <param name="id">ID</param>
@@ -81,5 +82,26 @@ namespace Model.DB.DataService
         /// <summary>課題の削除</summary>
         /// <param name="id">ID</param>
         Task DeleteIssueDataAsync(int id);
+
+        /// <summary>該当課題のメッセージの取得</summary>
+        /// <param name="issueID">課題ID</param>
+        /// <returns>メッセージ一覧</returns>
+        Task<Message[]> GetMessagesDataAsync(int issueID);
+
+        /// <summary>メッセージの新規追加</summary>
+        /// <param name="issueID">課題ID</param>
+        /// <param name="userID">ユーザーID</param>
+        /// <param name="postMessage">投稿メッセージ</param>
+        Task AddMessageDataAsync(int issueID, int userID, string postMessage);
+
+        /// <summary>メッセージの更新</summary>
+        /// <param name="id">ID</param>
+        /// <param name="userID">ユーザーID</param>
+        /// <param name="postMessage">投稿メッセージ</param>
+        Task UpdateMessageDataAsync(int id, int userID, string postMessage);
+
+        /// <summary>メッセージの削除</summary>
+        /// <param name="id">ID</param>
+        Task DeleteMessageDataAsync(int id);
     }
 }

@@ -17,7 +17,7 @@ namespace Model.Tables
         public int DepartmentID { get; set; }
 
         /// <summary>部門</summary>
-        public virtual int Department { get; set; }
+        public virtual Department Department { get; set; } = null!;
 
         /// <summary>権限ID</summary>
         [ForeignKey(nameof(Authority))]
@@ -40,7 +40,7 @@ namespace Model.Tables
         public string Mail { get; set; } = string.Empty;
 
         /// <summary>課題を識別するためのキー情報の一覧</summary>
-        public virtual ICollection<Issue> Issue { get; set; } = null!;
+        public virtual ICollection<Issue> Issues { get; set; } = null!;
 
         /// <summary>メッセージを識別するためのキー情報の一覧</summary>
         public virtual ICollection<Message> Messages { get; set; } = null!;

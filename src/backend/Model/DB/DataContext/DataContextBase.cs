@@ -52,6 +52,7 @@ namespace Model.DB.DataContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             SetPrimary(modelBuilder);
+            SetCascade(modelBuilder);
             SetUnique(modelBuilder);
             SetSeed(modelBuilder);
         }
@@ -74,6 +75,15 @@ namespace Model.DB.DataContext
         /// <param name="modelBuilder">モデルビルダー</param>
         private static void SetUnique(ModelBuilder modelBuilder)
         {
+        }
+
+        /// <summary>カスケード接続設定を行う</summary>
+        /// <param name="modelBuilder">モデルビルダー</param>
+        private static void SetCascade(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasOne(x => x.SignIn).WithOne(x => x.User).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Message>().HasOne(x => x.User).WithMany(x => x.Messages).OnDelete(DeleteBehavior.ClientCascade);
+            modelBuilder.Entity<Issue>().HasOne(x => x.User).WithMany(x => x.Issues).OnDelete(DeleteBehavior.ClientCascade);
         }
 
         /// <summary>シードデータを投入する</summary>

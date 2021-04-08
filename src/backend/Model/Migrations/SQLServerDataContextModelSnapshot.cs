@@ -21,13 +21,13 @@ namespace Model.Migrations
 
             modelBuilder.Entity("DepartmentProject", b =>
                 {
-                    b.Property<int>("DepartmentsID")
+                    b.Property<int>("DepartmentID")
                         .HasColumnType("int");
 
                     b.Property<int>("ProjectID")
                         .HasColumnType("int");
 
-                    b.HasKey("DepartmentsID", "ProjectID");
+                    b.HasKey("DepartmentID", "ProjectID");
 
                     b.HasIndex("ProjectID");
 
@@ -105,7 +105,7 @@ namespace Model.Migrations
                     b.Property<int>("ProjectID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserID")
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -311,9 +311,6 @@ namespace Model.Migrations
                     b.Property<int>("AuthorityID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Department")
-                        .HasColumnType("int");
-
                     b.Property<int>("DepartmentID")
                         .HasColumnType("int");
 
@@ -334,7 +331,8 @@ namespace Model.Migrations
 
                     b.HasIndex("DepartmentID");
 
-                    b.HasIndex("SignInID");
+                    b.HasIndex("SignInID")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
@@ -343,7 +341,7 @@ namespace Model.Migrations
                 {
                     b.HasOne("Model.DB.Tables.Department", null)
                         .WithMany()
-                        .HasForeignKey("DepartmentsID")
+                        .HasForeignKey("DepartmentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -368,13 +366,17 @@ namespace Model.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.Tables.User", null)
-                        .WithMany("Issue")
-                        .HasForeignKey("UserID");
+                    b.HasOne("Model.Tables.User", "User")
+                        .WithMany("Issues")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.Navigation("IssueStatus");
 
                     b.Navigation("Project");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Model.DB.Tables.Message", b =>
@@ -388,7 +390,7 @@ namespace Model.Migrations
                     b.HasOne("Model.Tables.User", "User")
                         .WithMany("Messages")
                         .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Issue");
@@ -415,19 +417,21 @@ namespace Model.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.DB.Tables.Department", null)
+                    b.HasOne("Model.DB.Tables.Department", "Department")
                         .WithMany("User")
                         .HasForeignKey("DepartmentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Model.DB.Tables.SignIn", "SignIn")
-                        .WithMany("User")
-                        .HasForeignKey("SignInID")
+                        .WithOne("User")
+                        .HasForeignKey("Model.Tables.User", "SignInID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Authority");
+
+                    b.Navigation("Department");
 
                     b.Navigation("SignIn");
                 });
@@ -464,12 +468,13 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.DB.Tables.SignIn", b =>
                 {
-                    b.Navigation("User");
+                    b.Navigation("User")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Model.Tables.User", b =>
                 {
-                    b.Navigation("Issue");
+                    b.Navigation("Issues");
 
                     b.Navigation("Messages");
                 });

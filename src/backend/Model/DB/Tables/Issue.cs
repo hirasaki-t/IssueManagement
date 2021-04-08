@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Model.Tables;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,6 +18,13 @@ namespace Model.DB.Tables
 
         /// <summary>案件</summary>
         public virtual Project Project { get; set; } = null!;
+
+        /// <summary>ユーザーID</summary>
+        [ForeignKey(nameof(User))]
+        public int UserID { get; set; }
+
+        /// <summary>ユーザー</summary>
+        public virtual User User { get; set; } = null!;
 
         /// <summary>課題ステータスID</summary>
         [ForeignKey(nameof(IssueStatus))]

@@ -13,9 +13,12 @@ namespace Model.DB.DataService
             await dataContext.Issues.AsNoTracking().ToArrayAsync();
 
         /// <inheritdoc/>
-        public async Task AddIssueDataAsync(int projectID, IssueStatuses issueStatuses, string name)
+        public async Task AddIssueDataAsync(int projectID, int userID, IssueStatuses issueStatuses, string name)
         {
             if (!await dataContext.Projects.AnyAsync(x => x.ID == projectID))
+                throw new Exception();
+
+            if (!await dataContext.Users.AnyAsync(x => x.ID == userID))
                 throw new Exception();
 
             if (!await dataContext.IssueStatuses.AnyAsync(x => x.ID == issueStatuses))
@@ -24,6 +27,7 @@ namespace Model.DB.DataService
             var addIssueData = new Issue
             {
                 ProjectID = projectID,
+                UserID = userID,
                 IssueStatusID = issueStatuses,
                 Name = name
             };
