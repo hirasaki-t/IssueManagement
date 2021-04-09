@@ -2,18 +2,18 @@ import * as React from 'react';
 import 'typeface-roboto';
 
 import Drowers from '../components/drawers';
-import UserManagementTable from '../components/userManagementTable';
+import QuestionAndAnswerTable from '../components/issueListTable';
 import '../../css/style.scss';
 
-const userManagementPage: React.FC = () => {
+const issueListPage: React.FC = () => {
 
     return (
         <div>
             <Drowers>
-                <UserManagementTable />
+                <QuestionAndAnswerTable />
             </Drowers>
         </div>
     );
 }
 
-export default userManagementPage;
+export default issueListPage;
