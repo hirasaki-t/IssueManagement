@@ -10,25 +10,23 @@ const archiveListTable : React.FC = () => {
         { title: '案件名', field: 'title' },
         { title: '状態', field: 'status' },
         { title: '部署', field: 'department' },
-        { title: '依頼者', field: 'client' },
-        { title: '開発担当者', field: 'staff' },
-        { title: '最終更新日', field: 'updateDate' },
+        { title: '作成日', field: 'createdate' },
     ]);
 
     /** テーブルの値セット */
     const [datas, setData] = useState([
-        { id:"1", title: "プロジェクトA", status: "リリース済", department: "総務部", client: "増永理俊", staff: "阿垣和男", updateDate: "2021/01/01"},
-        { id:"2", title: "プロジェクトB", status: "リリース済", department: "総務部", client: "小栗弥恵子", staff: "阿垣和男", updateDate: "2021/01/01"},
-        { id:"3", title: "プロジェクトC", status: "リリース済", department: "その他", client: "鳥飼潤", staff: "阿垣和男", updateDate: "2021/01/01"},
-        { id:"4", title: "プロジェクトD", status: "リリース済", department: "営業部", client: "宇根元義信", staff: "関谷則子", updateDate: "2021/01/01"},
-        { id:"5", title: "プロジェクトE", status: "リリース済", department: "広報部", client: "保科佳直", staff: "関谷則子", updateDate: "2021/01/01"},
+        { id:"1", title: "プロジェクトA", status: "リリース済", department: "総務部", createdate: "2021/01/01"},
+        { id:"2", title: "プロジェクトB", status: "リリース済", department: "総務部", createdate: "2021/01/01"},
+        { id:"3", title: "プロジェクトC", status: "リリース済", department: "その他", createdate: "2021/01/01"},
+        { id:"4", title: "プロジェクトD", status: "リリース済", department: "営業部", createdate: "2021/01/01"},
+        { id:"5", title: "プロジェクトE", status: "リリース済", department: "広報部", createdate: "2021/01/01"},
     ]);
 
     const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
 
     return (
         <MaterialTable
-            title="終了案件リスト"
+            title="過去の案件"
             columns={columns}
             data={datas}        
             editable={{
@@ -38,7 +36,7 @@ const archiveListTable : React.FC = () => {
                 }, 1000)
                   }),
               }}
-            options={{ pageSize:15, headerStyle: { whiteSpace: 'nowrap' }, rowStyle: { whiteSpace: 'nowrap' } }}
+            options={{ pageSize:10, headerStyle: { whiteSpace: 'nowrap' }, rowStyle: { whiteSpace: 'nowrap' } }}
             onRowClick={(_, rowData) => // ★ 行クリック時の処理
                 setSelectedCouponId(
                   rowData &&

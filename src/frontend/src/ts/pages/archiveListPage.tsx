@@ -1,7 +1,7 @@
 import * as React from 'react';
 import 'typeface-roboto';
 
-import AppBar from '../components/appBar';
+import Drawers from '../components/drawers';
 import ArchiveListTable from '../components/archiveListTable';
 import '../../css/style.scss';
 
@@ -9,10 +9,9 @@ const archiveListPage: React.FC = () => {
 
     return (
         <div>
-            <AppBar />
-            <div className="Page stackContainer">
-            </div>
-            <ArchiveListTable />
+            <Drawers>
+                <ArchiveListTable />
+            </Drawers>
         </div>
     );
 }

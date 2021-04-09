@@ -1,7 +1,7 @@
 import * as React from 'react';
 import 'typeface-roboto';
 
-import AppBar from '../components/appBar';
+import Drowers from '../components/drawers';
 import '../../css/style.scss';
 import { Button, Card, CardContent, Chip, makeStyles, OutlinedInput, TextField } from '@material-ui/core';
 
@@ -37,7 +37,7 @@ const systemSettingPage: React.FC = () => {
 
     return (
         <div>
-            <AppBar />
+            <Drowers>
             <div className="Page stackContainer">
 
                 <Card className="systemSetting_card" style={{backgroundColor: "#f5f5f5"}}>
@@ -79,6 +79,7 @@ const systemSettingPage: React.FC = () => {
                 </div>
                 
             </div>
+            </Drowers>
         </div>
     );
 }

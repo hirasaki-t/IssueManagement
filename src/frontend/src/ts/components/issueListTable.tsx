@@ -43,7 +43,7 @@ const subjectListTable : React.FC = () => {
                 }, 1000)
                   }),
               }}
-            options={{ pageSize:15, headerStyle: { whiteSpace: 'nowrap' }, rowStyle: { whiteSpace: 'nowrap' } }}
+            options={{ pageSize:10, headerStyle: { whiteSpace: 'nowrap' }, rowStyle: { whiteSpace: 'nowrap' } }}
             onRowClick={(_, rowData) => // ★ 行クリック時の処理
                 setSelectedCouponId(
                   rowData &&

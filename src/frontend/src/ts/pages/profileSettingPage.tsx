@@ -1,7 +1,7 @@
 import * as React from 'react';
 import 'typeface-roboto';
 
-import AppBar from '../components/appBar';
+import Drowers from '../components/drawers';
 import '../../css/style.scss';
 import { Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
@@ -10,7 +10,7 @@ const profileSettingPage: React.FC = () => {
 
     return (
         <div>
-            <AppBar />
+            <Drowers>
             <div className="Page stackContainer">
                 <div>
                     <TextField className="setting_name" label="名前" variant="outlined" InputProps={{ readOnly: true }}/>
@@ -39,6 +39,7 @@ const profileSettingPage: React.FC = () => {
                 <Button variant="contained" color="primary">変更を保存</Button>
                 </div>
             </div>
+            </Drowers>
         </div>
     );
 }
