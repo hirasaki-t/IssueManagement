@@ -103,5 +103,7 @@ namespace Model.DB.DataService
         /// <summary>メッセージの削除</summary>
         /// <param name="id">ID</param>
         Task DeleteMessageDataAsync(int id);
+
+        Task<bool> CanSignInAsync(SignIn signIn);
     }
 }
