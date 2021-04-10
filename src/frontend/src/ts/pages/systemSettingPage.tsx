@@ -5,7 +5,7 @@ import Drowers from '../components/drawers';
 import '../../css/style.scss';
 import { Button, Card, CardContent, Chip, makeStyles, OutlinedInput, TextField } from '@material-ui/core';
 
-const systemSettingPage: React.FC = () => {
+const SystemSettingPage: React.FC = () => {
     
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -38,49 +38,51 @@ const systemSettingPage: React.FC = () => {
     return (
         <div>
             <Drowers>
-            <div className="Page stackContainer">
+                <div className="Page stackContainer">
 
-                <Card className="systemSetting_card" style={{backgroundColor: "#f5f5f5"}}>
-                    <CardContent>
-                        <div>
-                            <h3>部署管理</h3>
-                        </div>
-                        <div>
-                            <Chip label="総務部" onDelete={handleDelete} className={classes.chip} />
-                            <Chip label="人事部" onDelete={handleDelete} className={classes.chip} />
-                            <Chip label="経理部" onDelete={handleDelete} className={classes.chip} />
-                            <Chip label="マーケティング部" onDelete={handleDelete} className={classes.chip} />
-                            <Chip label="広報部" onDelete={handleDelete} className={classes.chip} />
-                            <Chip label="開発部" onDelete={handleDelete} className={classes.chip} />
-                        </div>
-                        <div>
-                            <TextField className="systemSetting_textfield" label="新規追加したい部署名" variant="outlined" />
-                            <Button variant="contained" color="primary">追加</Button>    
-                        </div>
-                    </CardContent>
-                </Card>
-                
-                <Card className="systemSetting_card" style={{backgroundColor: "#f5f5f5"}}>
-                    <CardContent>
-                        <div>
-                            <h3>全閲覧権限付与部署</h3>
-                        </div>
-                        <div>
-                            <Chip label="開発部" onDelete={handleDelete} className={classes.chip} />
-                        </div>
-                        <div>
-                            <TextField className="systemSetting_textfield" label="新規追加したい部署名" variant="outlined" />
-                            <Button variant="contained" color="primary">追加</Button>    
-                        </div>
-                    </CardContent>
-                </Card>
-                <div>
-                    <Button variant="contained" color="primary">変更を保存</Button>
+                    <Card className="systemSetting_card" style={{backgroundColor: "#f5f5f5"}}>
+                        <CardContent>
+                            <div>
+                                <h3>部署管理</h3>
+                            </div>
+                            <div>
+                                <Chip label="総務部" onDelete={handleDelete} className={classes.chip} />
+                                <Chip label="人事部" onDelete={handleDelete} className={classes.chip} />
+                                <Chip label="経理部" onDelete={handleDelete} className={classes.chip} />
+                                <Chip label="マーケティング部" onDelete={handleDelete} className={classes.chip} />
+                                <Chip label="広報部" onDelete={handleDelete} className={classes.chip} />
+                                <Chip label="開発部" onDelete={handleDelete} className={classes.chip} />
+                            </div>
+                            <div>
+                                <TextField className="systemSetting_textfield" label="新規追加したい部署名" variant="outlined" />
+                                <Button variant="contained" color="primary">追加</Button>    
+                            </div>
+                        </CardContent>
+                    </Card>
+                    <Card className="systemSetting_card" style={{backgroundColor: "#f5f5f5"}}>
+                        <CardContent>
+                            <div>
+                                <h3>全閲覧権限付与部署</h3>
+                            </div>
+                            <div>
+                                <Chip label="開発部" onDelete={handleDelete} className={classes.chip} />
+                            </div>
+                            <div>
+                                <TextField className="systemSetting_textfield" label="新規追加したい部署名" variant="outlined" />
+                                <Button variant="contained" color="primary">追加</Button>    
+                            </div>
+                        </CardContent>
+                    </Card>
+                    <div>
+                        <Button variant="contained" color="primary">変更を保存</Button>
+                    </div>
+
                 </div>
-                
-            </div>
             </Drowers>
         </div>
     );
 }
-export default systemSettingPage;
+
+
+export default SystemSettingPage;
+

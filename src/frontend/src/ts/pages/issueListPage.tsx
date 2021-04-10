@@ -9,11 +9,9 @@ const issueListPage: React.FC = () => {
 
     return (
         <div>
-            <Drowers>
-                <QuestionAndAnswerTable />
-            </Drowers>
+            <Drowers/>
         </div>
     );
 }
-
+{/* <QuestionAndAnswerTable /> */}
 export default issueListPage;

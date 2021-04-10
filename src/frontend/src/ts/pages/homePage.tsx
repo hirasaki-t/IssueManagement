@@ -5,7 +5,7 @@ import Drawers from '../components/drawers';
 import QuestionAndAnswerTable from '../components/issueListTable';
 import '../../css/style.scss';
 
-const homePage: React.FC = () => {
+const HomePage: React.FC = () => {
 
     return (
         <div>
@@ -19,4 +19,4 @@ const homePage: React.FC = () => {
     );
 }
 
-export default homePage;
+export default HomePage;

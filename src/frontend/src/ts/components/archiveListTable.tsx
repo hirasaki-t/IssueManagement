@@ -2,7 +2,7 @@ import * as React from "react";
 import MaterialTable from "material-table";
 import { useState } from "react";
 
-const archiveListTable : React.FC = () => {
+const ArchiveListTable : React.FC = () => {
 
     /** テーブルのヘッダー定義 */
     const [columns, setColumns] = useState([
@@ -48,4 +48,4 @@ const archiveListTable : React.FC = () => {
         />    
     );
 }
-export default archiveListTable;
+export default ArchiveListTable;
