@@ -11,15 +11,14 @@ const messagePage: React.FC = () => {
 
     return (
         <div>
-            <Drowers>
-                <Question />
-                <Answer />
-                <Answer />
-                <Question />
-                <TextInput />
-            </Drowers>
+            <Drowers/>
         </div>
     );
 }
 
+{/* <Question />
+<Answer />
+<Answer />
+<Question />
+<TextInput /> */}
 export default messagePage;

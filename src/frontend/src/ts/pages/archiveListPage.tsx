@@ -5,7 +5,7 @@ import Drawers from '../components/drawers';
 import ArchiveListTable from '../components/archiveListTable';
 import '../../css/style.scss';
 
-const archiveListPage: React.FC = () => {
+const ArchiveListPage: React.FC = () => {
 
     return (
         <div>
@@ -16,4 +16,4 @@ const archiveListPage: React.FC = () => {
     );
 }
 
-export default archiveListPage;
+export default ArchiveListPage;

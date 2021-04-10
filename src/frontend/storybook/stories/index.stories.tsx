@@ -41,4 +41,4 @@ storiesOf('page', module)
   .add('回答', () => <Answer />)
   .add('テキスト入力', () => <TextInput />)
   .add('ユーザー管理テーブル', () => <UserManagementTable />)
-  .add('メニュー部分', () => <Drawer>Test</Drawer>);
+  .add('メニュー部分', () => <Drawer/>);

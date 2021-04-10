@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,10 +17,6 @@ import HistoryIcon from '@material-ui/icons/History';
 import UserSettingIcon from '@material-ui/icons/Settings';
 import AdminSettingIcon from '@material-ui/icons/GroupAdd';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-
-export interface Drawers {
-    children: React.ReactNode;
-}
 
 const drawerWidth = 240;
 
@@ -49,9 +46,9 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const drawers: React.FC<Drawers> = ({ children }) => {
-  const classes = useStyles();
 
+const Drawers: React.FC = ({children}) => {
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -73,36 +70,48 @@ const drawers: React.FC<Drawers> = ({ children }) => {
         <div className={classes.toolbar} />
         <Divider />
         <List>
+          <Link to ="/">
             <ListItem button key="">
               <ListItemIcon><HomeIcon /></ListItemIcon>
               <ListItemText primary="ホーム" />
             </ListItem>
+          </Link>
+          <Link to ="/list">
             <ListItem button key="">
               <ListItemIcon><ProjectIcon /></ListItemIcon>
               <ListItemText primary="案件リスト" />
             </ListItem>
+          </Link>
+          <Link to="/archive">
             <ListItem button key="">
               <ListItemIcon><HistoryIcon /></ListItemIcon>
               <ListItemText primary="過去の案件" />
             </ListItem>
+          </Link>
         </List>
         <Divider />
         <List>
+          <Link to="/setting">
             <ListItem button key="">
               <ListItemIcon><AccountBoxIcon /></ListItemIcon>
               <ListItemText primary="ユーザー設定" />
             </ListItem>
+          </Link>
         </List>
         <Divider />
         <List>
+          <Link to="/admin/usersetting">
             <ListItem button key="">
               <ListItemIcon><AdminSettingIcon /></ListItemIcon>
               <ListItemText primary="ユーザー管理" />
             </ListItem>
+          </Link>
+          <Link to="/admin/systemsetting">
             <ListItem button key="">
               <ListItemIcon><UserSettingIcon /></ListItemIcon>
               <ListItemText primary="システム管理" />
             </ListItem>
+          </Link>
         </List>
       </Drawer>
       
@@ -114,4 +123,4 @@ const drawers: React.FC<Drawers> = ({ children }) => {
   );
 }
 
-export default drawers;
+export default Drawers;
