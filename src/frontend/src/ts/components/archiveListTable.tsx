@@ -1,6 +1,7 @@
 import * as React from "react";
 import MaterialTable from "material-table";
 import { useState } from "react";
+import { Link, useHistory } from 'react-router-dom';
 
 const ArchiveListTable : React.FC = () => {
 
@@ -23,7 +24,8 @@ const ArchiveListTable : React.FC = () => {
     ]);
 
     const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
-
+    const history = useHistory()
+    
     return (
         <MaterialTable
             title="過去の案件"
@@ -38,12 +40,7 @@ const ArchiveListTable : React.FC = () => {
               }}
             options={{ pageSize:10, headerStyle: { whiteSpace: 'nowrap' }, rowStyle: { whiteSpace: 'nowrap' } }}
             onRowClick={(_, rowData) => // ★ 行クリック時の処理
-                setSelectedCouponId(
-                  rowData &&
-                    (!selectedCouponId || selectedCouponId !== rowData.id)
-                    ? rowData.id
-                    : null
-                )
+                history.push("/project/issue")
             }
         />    
     );

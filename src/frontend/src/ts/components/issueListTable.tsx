@@ -1,8 +1,10 @@
 import * as React from "react";
 import MaterialTable from "material-table";
 import { useState } from "react";
+import SimpleMDE from 'react-simplemde-editor';
+import 'easymde/dist/easymde.min.css';
 
-const subjectListTable : React.FC = () => {
+const IssueListTable : React.FC = () => {
 
     /** テーブルのヘッダー定義 */
     const [columns, setColumns] = useState([
@@ -25,35 +27,39 @@ const subjectListTable : React.FC = () => {
     ]);
 
     const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
-
+    const [markdown, setMarkdown] = useState('');
     return (
-        <MaterialTable
-            title="課題リスト"
-            columns={columns}
-            data={datas}        
-            editable={{
-                onRowAdd: newData =>
-                  new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                    }, 1000)
-                }),
-                onRowUpdate: (newData, oldData) =>
+        <div>
+            <SimpleMDE onChange={(e) => setMarkdown(e)} options = {{autofocus:true, spellChecker:false, 
+                toolbar:["bold","italic","strikethrough","heading","|","code","quote","link","image","table","|","preview"]}}/>
+            <MaterialTable
+                title="課題リスト"
+                columns={columns}
+                data={datas}        
+                editable={{
+                    onRowAdd: newData =>
                     new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                }, 1000)
-                  }),
-              }}
-            options={{ pageSize:10, headerStyle: { whiteSpace: 'nowrap' }, rowStyle: { whiteSpace: 'nowrap' } }}
-            onRowClick={(_, rowData) => // ★ 行クリック時の処理
-                setSelectedCouponId(
-                  rowData &&
-                    (!selectedCouponId || selectedCouponId !== rowData.id)
-                    ? rowData.id
-                    : null
-                )
-            }
-        />    
+                        setTimeout(() => {
+                        }, 1000)
+                    }),
+                    onRowUpdate: (newData, oldData) =>
+                        new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                    }, 1000)
+                    }),
+                }}
+                options={{ pageSize:7, headerStyle: { whiteSpace: 'nowrap' }, rowStyle: { whiteSpace: 'nowrap' } }}
+                onRowClick={(_, rowData) => // ★ 行クリック時の処理
+                    setSelectedCouponId(
+                    rowData &&
+                        (!selectedCouponId || selectedCouponId !== rowData.id)
+                        ? rowData.id
+                        : null
+                    )
+                }
+            />    
+        </div>
     );
 }
 
-export default subjectListTable;
+export default IssueListTable;

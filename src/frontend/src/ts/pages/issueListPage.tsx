@@ -2,16 +2,17 @@ import * as React from 'react';
 import 'typeface-roboto';
 
 import Drowers from '../components/drawers';
-import QuestionAndAnswerTable from '../components/issueListTable';
+import IssueTable from '../components/issueListTable';
 import '../../css/style.scss';
 
-const issueListPage: React.FC = () => {
+const IssueListPage: React.FC = () => {
 
     return (
         <div>
-            <Drowers/>
+            <Drowers>
+                <IssueTable />
+            </Drowers>
         </div>
     );
 }
-{/* <QuestionAndAnswerTable /> */}
-export default issueListPage;
+export default IssueListPage;
