@@ -1,7 +1,7 @@
 import * as React from "react";
 import MaterialTable from "material-table";
 import { useState } from "react";
-
+import { Link, useHistory } from 'react-router-dom';
 
 
 function ProjectListTable(){
@@ -25,6 +25,7 @@ const [datas, setData] = useState([
 ]);
 
 const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
+const history = useHistory()
 
     return (
         <MaterialTable
@@ -41,18 +42,13 @@ const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
                     new Promise((resolve, reject) => {
                     setTimeout(() => {
                 }, 1000)
-          }),
-              }}
+                }),
+            }}
             options={{ pageSize:10, headerStyle: { whiteSpace: 'nowrap' }, rowStyle: { whiteSpace: 'nowrap' } }}
-            onRowClick={(_, rowData) => // ★ 行クリック時の処理
-                setSelectedCouponId(
-                  rowData &&
-                    (!selectedCouponId || selectedCouponId !== rowData.id)
-                    ? rowData.id
-                    : null
-                )
+            onRowClick={(event, rowData) => 
+                history.push("/project/issue")
             }
-        />    
+        />
     );
 
 }
