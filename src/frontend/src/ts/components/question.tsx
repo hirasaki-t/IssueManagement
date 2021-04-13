@@ -8,7 +8,7 @@ import { TextField } from '@material-ui/core';
 const Question : React.FC = () => {
 
   return (
-    <div className="Page stackContainer">
+    <div className="stackContainer">
       <div className='rightStackContainer'>
         <TextField className="question" label="自分" value="あああああああああああああ" multiline={true} InputProps={{ readOnly: true }}/>
         <Avatar>

@@ -11,7 +11,7 @@ const ProfileSettingPage: React.FC = () => {
     return (
         <div>
             <Drowers>
-                <div className="Page stackContainer">
+                <div className="stackContainer">
                     <div>
                         <TextField className="setting_name" label="名前" variant="outlined" InputProps={{ readOnly: true }}/>
                     </div>

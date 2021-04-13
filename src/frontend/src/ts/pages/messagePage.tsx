@@ -7,18 +7,20 @@ import Question from '../components/question';
 import TextInput from '../components/textInput'
 import '../../css/style.scss';
 
-const messagePage: React.FC = () => {
+const MessagePage: React.FC = () => {
 
     return (
         <div>
-            <Drowers/>
+            <Drowers>
+                <Question />
+                <Answer />
+                <Answer />
+                <Question />
+                <TextInput />
+            </Drowers>
         </div>
     );
 }
 
-{/* <Question />
-<Answer />
-<Answer />
-<Question />
-<TextInput /> */}
-export default messagePage;
+
+export default MessagePage;
