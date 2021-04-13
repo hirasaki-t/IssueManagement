@@ -14,7 +14,7 @@ const Index: React.FC = () =>(
   <HashRouter>
     <Switch>
       <Route exact path="/" render={() => <Home />} />  
-      <Route exact path = "/list" render={() => <List />} />
+      <Route exact path="/list" render={() => <List />} />
       <Route exact path="/archive" render={() => <Archive />} />
       <Route exact path="/project/issue" render={() => <Issue />} />
       <Route exact path="/project/issue/message" render={() => <Message />} />
