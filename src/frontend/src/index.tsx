@@ -5,6 +5,7 @@ import List from '../src/ts/pages/projectListPage';
 import Home from '../src/ts/pages/homePage';
 import Archive from "../src/ts/pages/archiveListPage";
 import Issue from "../src/ts/pages/issueListPage";
+import Message from "../src/ts/pages/messagePage";
 import UserSetting from "../src/ts/pages/profileSettingPage"
 import ManageUser from "../src/ts/pages/userManagementPage";
 import ManageSystem from "../src/ts/pages/systemSettingPage";
@@ -16,6 +17,7 @@ const Index: React.FC = () =>(
       <Route exact path = "/list" render={() => <List />} />
       <Route exact path="/archive" render={() => <Archive />} />
       <Route exact path="/project/issue" render={() => <Issue />} />
+      <Route exact path="/project/issue/message" render={() => <Message />} />
       <Route exact path="/setting" render={() => <UserSetting />} />
       <Route exact path="/admin/usersetting" render={() => <ManageUser />} />
       <Route exact path="/admin/systemsetting" render={() => <ManageSystem />} />

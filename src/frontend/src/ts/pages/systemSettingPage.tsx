@@ -38,7 +38,7 @@ const SystemSettingPage: React.FC = () => {
     return (
         <div>
             <Drowers>
-                <div className="Page stackContainer">
+                <div className="stackContainer">
 
                     <Card className="systemSetting_card" style={{backgroundColor: "#f5f5f5"}}>
                         <CardContent>

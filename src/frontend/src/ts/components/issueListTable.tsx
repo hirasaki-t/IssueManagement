@@ -1,7 +1,8 @@
 import * as React from "react";
 import MaterialTable from "material-table";
 import { useState } from "react";
-import SimpleMDE from 'react-simplemde-editor';
+import { Link, useHistory } from 'react-router-dom';
+
 import 'easymde/dist/easymde.min.css';
 
 const IssueListTable : React.FC = () => {
@@ -27,11 +28,10 @@ const IssueListTable : React.FC = () => {
     ]);
 
     const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
-    const [markdown, setMarkdown] = useState('');
+    const history = useHistory()
     return (
         <div>
-            <SimpleMDE onChange={(e) => setMarkdown(e)} options = {{autofocus:true, spellChecker:false, 
-                toolbar:["bold","italic","strikethrough","heading","|","code","quote","link","image","table","|","preview"]}}/>
+            
             <MaterialTable
                 title="課題リスト"
                 columns={columns}
@@ -49,13 +49,8 @@ const IssueListTable : React.FC = () => {
                     }),
                 }}
                 options={{ pageSize:7, headerStyle: { whiteSpace: 'nowrap' }, rowStyle: { whiteSpace: 'nowrap' } }}
-                onRowClick={(_, rowData) => // ★ 行クリック時の処理
-                    setSelectedCouponId(
-                    rowData &&
-                        (!selectedCouponId || selectedCouponId !== rowData.id)
-                        ? rowData.id
-                        : null
-                    )
+                onRowClick={(event, rowData) => 
+                    history.push("/project/issue/message")
                 }
             />    
         </div>

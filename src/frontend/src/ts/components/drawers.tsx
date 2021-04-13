@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -70,48 +71,48 @@ const Drawers: React.FC = ({children}) => {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          <Link to ="/">
+          <LinkContainer to ="/">
             <ListItem button key="">
               <ListItemIcon><HomeIcon /></ListItemIcon>
               <ListItemText primary="ホーム" />
             </ListItem>
-          </Link>
-          <Link to ="/list">
+          </LinkContainer>
+          <LinkContainer to ="/list">
             <ListItem button key="">
               <ListItemIcon><ProjectIcon /></ListItemIcon>
               <ListItemText primary="案件リスト" />
             </ListItem>
-          </Link>
-          <Link to="/archive">
+          </LinkContainer>
+          <LinkContainer to="/archive">
             <ListItem button key="">
               <ListItemIcon><HistoryIcon /></ListItemIcon>
               <ListItemText primary="過去の案件" />
             </ListItem>
-          </Link>
+          </LinkContainer>
         </List>
         <Divider />
         <List>
-          <Link to="/setting">
+          <LinkContainer to="/setting">
             <ListItem button key="">
               <ListItemIcon><AccountBoxIcon /></ListItemIcon>
               <ListItemText primary="ユーザー設定" />
             </ListItem>
-          </Link>
+          </LinkContainer>
         </List>
         <Divider />
         <List>
-          <Link to="/admin/usersetting">
+          <LinkContainer to="/admin/usersetting">
             <ListItem button key="">
               <ListItemIcon><AdminSettingIcon /></ListItemIcon>
               <ListItemText primary="ユーザー管理" />
             </ListItem>
-          </Link>
-          <Link to="/admin/systemsetting">
+          </LinkContainer>
+          <LinkContainer to="/admin/systemsetting">
             <ListItem button key="">
               <ListItemIcon><UserSettingIcon /></ListItemIcon>
               <ListItemText primary="システム管理" />
             </ListItem>
-          </Link>
+          </LinkContainer>
         </List>
       </Drawer>
       

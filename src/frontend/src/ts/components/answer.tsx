@@ -7,7 +7,7 @@ import { TextField } from '@material-ui/core';
 const Answer : React.FC = () => {
 
   return (
-    <div className="Page stackContainer">
+    <div className="stackContainer">
       <div className='leftStackContainer'>
         <Avatar>
           <PersonIcon />
