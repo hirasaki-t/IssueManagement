@@ -1,4 +1,5 @@
 import Drawers from '../components/Drawers';
+import { Button } from '@material-ui/core';
 import ProjectsListTable from '../components/ProjectListTable';
 import '../css/style.scss';
 
@@ -13,9 +14,14 @@ interface ProjectList {
 function ProjectsListPage() {
 
     return (
-        <div>
+        <div className="stackContainer">
             <Drawers>
-                <ProjectsListTable />
+                <div className="rightStackContainer">
+                    <Button variant="contained" color="primary">案件の新規追加</Button>
+                </div>
+                <div>
+                    <ProjectsListTable />
+                </div>
             </Drawers>
         </div>
     );

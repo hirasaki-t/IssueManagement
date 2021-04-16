@@ -1,65 +1,73 @@
 /* ページ用コンテナ */
-.Page{
+.Page {
   margin-top: 5.5rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
+
 /* ページ用コンテナ内のスペーシング */
-.stackContainer>*{
+.stackContainer>* {
   margin-bottom: 0.8rem;
 }
+
 /* ダイアログボタン用コンテナ */
-.dialogCloseButton{
+.dialogCloseButton {
   padding-top: 1rem;
   padding-bottom: 1rem;
   padding-right: 1rem;
 }
+
 /* 右寄せ用コンテナ */
 .rightStackContainer {
   display: flex;
   justify-content: flex-end;
 }
+
 /* 右寄せ用コンテナ内のスペーシング */
-.rightStackContainer > * {
+.rightStackContainer>* {
   margin-left: 0.8rem;
 }
+
 /* 左寄せ用コンテナ */
 .leftStackContainer {
   display: flex;
 }
+
 /* 左寄せ用コンテナ内のスペーシング */
-.leftStackContainer > * {
-  margin-right: 0.8rem;
+.leftStackContainer>* {
+  margin-right: 1rem;
 }
+
 /* 左寄せ用コンテナ */
 .bottomStackContainer {
   display: flex;
 }
+
 /* 左寄せ用コンテナ内のスペーシング */
-.bottomStackContainer > * {
+.bottomStackContainer>* {
   margin-bottom: 0.8rem;
 }
 
 /* fallback */
 @font-face {
-    font-family: 'Material Icons';
-    font-style: normal;
-    font-weight: 400;
-    src: url(https://fonts.gstatic.com/s/materialicons/v55/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
-  }
-  
-  .material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-  }
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v55/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}

@@ -10,7 +10,7 @@ function TextInput() {
                 <span>
                     <TextField label="メッセージを入力" multiline className="inputText" rows={4} variant="outlined" />
                 </span>
-                <span>
+                <span className="sendButton">
                     <Button className="sendButton" variant="contained" color="primary" endIcon={<Icon>send</Icon>} > 投稿 </Button>
                 </span>
             </div>
