@@ -30,13 +30,6 @@ function ArchiveListTable() {
             title="過去の案件"
             columns={columns}
             data={datas}
-            editable={{
-                onRowUpdate: (newData, oldData) =>
-                    new Promise((resolve, reject) => {
-                        setTimeout(() => {
-                        }, 1000)
-                    }),
-            }}
             options={{ pageSize: 10, headerStyle: { whiteSpace: 'nowrap' }, rowStyle: { whiteSpace: 'nowrap' } }}
             onRowClick={(_, rowData) => // ★ 行クリック時の処理
                 history.push("/project/issue")
