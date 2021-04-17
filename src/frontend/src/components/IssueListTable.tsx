@@ -6,53 +6,40 @@ import 'easymde/dist/easymde.min.css';
 
 function IssueListTable() {
 
+    /** 案件ステータス定義 */
+    const issueStatus = { 1: "未解決", 2: "解決済", 3: "保留", 4: "取下" };
+
     /** テーブルのヘッダー定義 */
     const [columns, setColumns] = useState([
-        { title: '課題ID', field: 'id', style: { width: '2%' } },
+        { title: '課題ID', field: 'id' },
         { title: '課題', field: 'title' },
-        { title: '質問者', field: 'questioner' },
-        { title: '回答者', field: 'answerer' },
+        { title: '起票者', field: 'voter' },
+        { title: '最終更新者', field: 'updater' },
         { title: '最終更新日', field: 'updateDate' },
-        { title: 'ステータス', field: 'status' }
+        { title: 'ステータス', field: 'status', lookup: issueStatus }
     ]);
 
     /** テーブルの値セット */
     const [datas, setData] = useState([
-        { id: "1", title: "◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯について", questioner: "山田太郎", answerer: "田中次郎", updateDate: "2020/01/05", status: "CLOSE" },
-        { id: "2", title: "◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯について", questioner: "山田太郎", answerer: "田中次郎,増永理俊", updateDate: "2020/01/05", status: "OPEN" },
-        { id: "3", title: "◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯について", questioner: "山田太郎", answerer: "", updateDate: "", status: "OPEN" },
-        { id: "4", title: "", questioner: "", answerer: "", updateDate: "", status: "" },
-        { id: "5", title: "", questioner: "", qanswerer: "", updateDate: "", status: "" },
-        { id: "6", title: "", questioner: "", answerer: "", updateDate: "", status: "" },
+        { id: "1", title: "◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯について", voter: "山田太郎", updater: "山田二郎", updateDate: "2020/01/05", status: 2 },
+        { id: "2", title: "◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯について", voter: "山田太郎", updater: "田中次郎", updateDate: "2020/01/05", status: 3 },
+        { id: "3", title: "◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯について", voter: "山田太郎", updater: "", updateDate: "", status: 1 },
+        { id: "4", title: "", voter: "", updater: "", updateDate: "", status: "" },
+        { id: "5", title: "", voter: "", updater: "", updateDate: "", status: "" },
+        { id: "6", title: "", voter: "", updater: "", updateDate: "", status: "" },
     ]);
 
-    const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
     const history = useHistory()
     return (
-        <div>
-
-            <MaterialTable
-                title="課題リスト"
-                columns={columns}
-                data={datas}
-                editable={{
-                    onRowAdd: newData =>
-                        new Promise((resolve, reject) => {
-                            setTimeout(() => {
-                            }, 1000)
-                        }),
-                    onRowUpdate: (newData, oldData) =>
-                        new Promise((resolve, reject) => {
-                            setTimeout(() => {
-                            }, 1000)
-                        }),
-                }}
-                options={{ pageSize: 7, headerStyle: { whiteSpace: 'nowrap' }, rowStyle: { whiteSpace: 'nowrap' } }}
-                onRowClick={(event, rowData) =>
-                    history.push("/project/issue/message")
-                }
-            />
-        </div>
+        <MaterialTable
+            title="課題リスト"
+            columns={columns}
+            data={datas}
+            options={{ pageSize: 7, headerStyle: { whiteSpace: 'nowrap' }, rowStyle: { whiteSpace: 'nowrap' } }}
+            onRowClick={(event, rowData) =>
+                history.push("/project/issue/message")
+            }
+        />
     );
 }
 
