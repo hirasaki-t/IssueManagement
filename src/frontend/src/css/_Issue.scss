@@ -1,4 +1,10 @@
 .addIssue_name,
-.addIssue_voter {
+.addIssue_voter,
+.addIssue_status {
     width: 30rem;
+}
+
+.addIssue_addButton,
+.addIssue_returnButton {
+    margin-left: 5rem;
 }
