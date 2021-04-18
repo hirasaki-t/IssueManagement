@@ -28,7 +28,7 @@ function AddProject() {
             <Dialog open={open}>
                 <div className="dialog_mergin stackContainer">
                     <div>
-                        <TextField className="addProject_name" label="案件名" variant="outlined" InputProps={{ readOnly: true }} />
+                        <TextField className="addProject_name" label="案件名" variant="outlined" />
                     </div>
                     <div>
                         <FormControl variant="outlined" >
@@ -49,15 +49,21 @@ function AddProject() {
                     </div>
                     <div>
                         <FormControl variant="outlined" >
-                            <InputLabel id="addProject_department">部署</InputLabel>
+                            <InputLabel id="addProject_department">部署(複数選択可)</InputLabel>
                             <Select className="addProject_department" multiple value={departments} onChange={handleChange}>
                                 <MenuItem value="1">開発</MenuItem>
                                 <MenuItem value="2">営業</MenuItem>
                             </Select>
                         </FormControl>
                     </div>
-                    <Button className="addProject_addButton" variant="contained" color="default" onClick={handleClose}>戻る</Button>
-                    <Button className="addProject_addButton" variant="contained" color="primary" onClick={handleClose}>案件を追加</Button>
+                    <div className="rightStackContainer">
+                        <span>
+                            <Button className="addProject_addButton" variant="contained" color="default" onClick={handleClose}>戻る</Button>
+                        </span>
+                        <span>
+                            <Button className="addProject_addButton" variant="contained" color="primary" onClick={handleClose}>案件を追加</Button>
+                        </span>
+                    </div>
                 </div>
             </Dialog>
         </div>
