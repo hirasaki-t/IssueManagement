@@ -3,17 +3,21 @@ import { useState } from "react";
 
 function UserManagementTable() {
 
+    /** 権限定義 */
+    const authorities = { 1: "開発", 2: "営業" };
+
     /** テーブルのヘッダー定義 */
     const [columns, setColumns] = useState([
-        { title: 'ID', field: 'id' },
-        { title: 'ユーザー名', field: 'name' },
-        { title: '部署', field: 'department' },
-        { title: '権限', field: 'authority' },
+        { title: "ID", field: "id", editable: 'never' as any },
+        { title: "名前", field: "name" },
+        { title: "メールアドレス", field: "mail" },
+        { title: "部署", field: "department" },
+        { title: "権限", field: "authority", lookup: authorities },
     ]);
 
     /** テーブルの値セット */
     const [datas, setData] = useState([
-        { id: "1", name: "増永理俊", department: "総務部", authority: "一般" },
+        { id: "1", name: "増永理俊", mail: "testtest@gmail.com", department: "総務部", authority: 1 },
     ]);
 
     const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
@@ -24,11 +28,6 @@ function UserManagementTable() {
             columns={columns}
             data={datas}
             editable={{
-                onRowAdd: newData =>
-                    new Promise((resolve, reject) => {
-                        setTimeout(() => {
-                        }, 1000)
-                    }),
                 onRowUpdate: (newData, oldData) =>
                     new Promise((resolve, reject) => {
                         setTimeout(() => {

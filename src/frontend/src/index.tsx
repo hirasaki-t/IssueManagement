@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter, Route, Switch } from 'react-router-dom';
+import SingIn from "../src/pages/SignInPage"
 import List from '../src/pages/ProjectListPage';
 import Home from '../src/pages/HomePage';
 import Archive from "../src/pages/ArchiveListPage";
@@ -14,6 +15,7 @@ const Index: React.FC = () => (
   <HashRouter>
     <Switch>
       <Route exact path="/" render={() => <Home />} />
+      <Route exact path="/signin" render={() => <SingIn />} />
       <Route exact path="/list" render={() => <List />} />
       <Route exact path="/archive" render={() => <Archive />} />
       <Route exact path="/project/issue" render={() => <Issue />} />
