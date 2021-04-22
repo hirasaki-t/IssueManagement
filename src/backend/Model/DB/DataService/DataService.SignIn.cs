@@ -1,5 +1,8 @@
-﻿using Model.DB.Tables;
+﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.EntityFrameworkCore;
+using Model.DB.Tables;
 using System;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace Model.DB.DataService
@@ -8,10 +11,32 @@ namespace Model.DB.DataService
     public partial class DataService
     {
         /// <inheritdoc/>
-        public Task<bool> CanSignInAsync(SignIn signIn)
+        public async Task<bool> CanSignInAsync(SignIn signIn)
         {
-            // TODO:認証処理を実装する
-            return Task.FromResult(new Random().Next(1, 3) == 1);
+            // IDが存在しなければ無効
+            if (!await dataContext.SignIns.AnyAsync(x => x.ID == signIn.ID))
+                return false;
+
+            // RandomNumberGeneratorを使用したソルトの生成
+            byte[] salt = new byte[128 / 8];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+
+            // パスワードをハッシュ化
+            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: signIn.PassWord,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA1,
+                iterationCount: 10000,
+                numBytesRequested: 256 / 8));
+
+            // パスワードが一致しなければ無効
+            if (!await dataContext.SignIns.AnyAsync(x => x.ID == signIn.ID && x.PassWord == hashed))
+                return false;
+
+            return true;
         }
     }
 }

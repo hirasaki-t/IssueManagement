@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 namespace WebApp.Controllers
 {
     /// <summary>サインインコントローラー</summary>
+    [ApiController]
+    [Route("api/[controller]/[action]")]
     public class SignInController : ControllerBase
     {
         /// <summary>データサービス</summary>
@@ -41,10 +43,10 @@ namespace WebApp.Controllers
         {
             if (!await dataService.CanSignInAsync(signIn))
             {
-                logger.LogWarning("ログイン試行失敗", CreateLogParameters(signIn));
+                logger.LogWarning("サインイン試行失敗", CreateLogParameters(signIn));
                 return BadRequest();
             }
-            logger.LogWarning("ログイン試行成功", CreateLogParameters(signIn));
+            logger.LogWarning("サインイン試行成功", CreateLogParameters(signIn));
 
             var claimsPrincipal = new ClaimsPrincipal(
                 new ClaimsIdentity(
