@@ -7,7 +7,7 @@ namespace WebApp.Controllers
 {
     /// <summary>ユーザーコントローラー</summary>
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
         /// <summary>既存ユーザーを取得</summary>

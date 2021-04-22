@@ -1,5 +1,9 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,6 +13,7 @@ using Model.DB.DataService;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace WebApp
 {
@@ -29,36 +34,40 @@ namespace WebApp
         /// <param name="services">サービスコレクション</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddAuthentication(options =>
-            //{
-            //    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            //    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            //    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            //}).AddCookie(options =>
-            //{
-            //    options.Events.OnRedirectToLogin = x =>
-            //    {
-            //        x.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            //        return Task.CompletedTask;
-            //    };
-            //    options.Events.OnRedirectToAccessDenied = x =>
-            //    {
-            //        x.Response.StatusCode = StatusCodes.Status403Forbidden;
-            //        return Task.CompletedTask;
-            //    };
-            //    options.Events.OnRedirectToLogout = _ => Task.CompletedTask;
-            ////});
+            services.AddAuthentication(options =>
+            {
+                // cookieベースの認証
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(options =>
+            {
+                options.Events.OnRedirectToLogin = x =>
+                {
+                    // ログイン画面に遷移するのではなくエラーを返す
+                    x.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                    return Task.CompletedTask;
+                };
+                options.Events.OnRedirectToAccessDenied = x =>
+                {
+                    // エラー画面に遷移するのではなくエラーを返す
+                    x.Response.StatusCode = StatusCodes.Status403Forbidden;
+                    return Task.CompletedTask;
+                };
+                options.Events.OnRedirectToLogout = _ => Task.CompletedTask;
+            });
             services.AddControllers(x =>
             {
-                //x.Filters.Add(new AuthorizeFilter(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build()));
+                // すべてのアクセスに対して認証保護を適用する
+                x.Filters.Add(new AuthorizeFilter(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build()));
             });
             services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApp", Version = "v1" });
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
-            });
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApp", Version = "v1" });
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            c.IncludeXmlComments(xmlPath);
+        });
 
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
@@ -75,7 +84,8 @@ namespace WebApp
         {
             app.UseRouting();
 
-            //app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             if (env.IsDevelopment())
             {
