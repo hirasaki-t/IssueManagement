@@ -1,11 +1,12 @@
 import React from 'react';
-
 import Drowers from '../components/Drawers';
 import '../css/style.scss';
-import { Button, Card, CardContent, Chip, makeStyles, OutlinedInput, TextField } from '@material-ui/core';
+import { Button, Card, CardContent, Chip, makeStyles, TextField } from '@material-ui/core';
 
+/** システム管理ページ */
 function SystemSettingPage() {
 
+    /** スタイル設定 */
     const useStyles = makeStyles((theme) => ({
         root: {
             display: 'flex',

@@ -4,6 +4,7 @@ import Question from '../components/Question';
 import TextInput from '../components/TextInput'
 import '../css/style.scss';
 
+/** メッセージページ */
 function MessagePage() {
 
     return (
@@ -18,6 +19,5 @@ function MessagePage() {
         </div>
     );
 }
-
 
 export default MessagePage;

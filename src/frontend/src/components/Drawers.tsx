@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -16,10 +15,12 @@ import HistoryIcon from '@material-ui/icons/History';
 import UserSettingIcon from '@material-ui/icons/Settings';
 import AdminSettingIcon from '@material-ui/icons/GroupAdd';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import { Button, Typography, Icon } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
+/** メニューの横幅 */
 const drawerWidth = 240;
 
+/** スタイル設定 */
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -36,7 +37,6 @@ const useStyles = makeStyles((theme: Theme) =>
     drawerPaper: {
       width: drawerWidth,
     },
-    // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,
     content: {
       flexGrow: 1,
@@ -46,8 +46,10 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+/**　props  */
 type Props = {}
 
+/** ドロワー */
 function Drawers(props: React.PropsWithChildren<Props>) {
   const classes = useStyles();
   return (

@@ -2,22 +2,26 @@ import React from 'react';
 import '../css/style.scss';
 import { Select, MenuItem, TextField, InputLabel, FormControl, Button, Dialog } from '@material-ui/core';
 
+/** 案件の新規追加 */
 function AddProject() {
 
+    /** ダイアログの表示状態 */
     const [open, setOpen] = React.useState(false);
 
-    /** 「案件の新規追加」ボタンの状態がTrue */
+    /** ダイアログを開く */
     const handleClickOpen = () => {
         setOpen(true);
     };
 
-    /** 「案件の新規追加」ボタンの状態がFalse */
+    /** ダイアログを閉じる */
     const handleClose = () => {
         setOpen(false);
     };
 
+    /** 部門情報 */
     const [departments, setDepartments] = React.useState<string[]>([]);
 
+    /** 部門変更ハンドル */
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         setDepartments(event.target.value as string[]);
     };

@@ -1,8 +1,8 @@
 import MaterialTable from "material-table";
 import { useState } from "react";
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-
+/** 案件リストテーブル */
 function ProjectListTable() {
 
     /** 案件ステータス定義 */
@@ -26,6 +26,7 @@ function ProjectListTable() {
         { id: "10", title: "プロジェクトJ", status: 7, department: "広報部", createdate: "2021/01/01" },
     ]);
 
+    /** ページ遷移用ヒストリー */
     const history = useHistory()
 
     return (

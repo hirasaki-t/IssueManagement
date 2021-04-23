@@ -3,6 +3,7 @@ import AddUser from "../components/AddUser"
 import UserManagementTable from '../components/UserManagementTable';
 import '../css/style.scss';
 
+/** ユーザー管理ページ */
 function UserManagementPage() {
 
     return (

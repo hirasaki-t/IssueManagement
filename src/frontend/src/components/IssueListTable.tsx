@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 import 'easymde/dist/easymde.min.css';
 
+/** 課題リストテーブル */
 function IssueListTable() {
 
     /** 案件ステータス定義 */
@@ -29,7 +30,9 @@ function IssueListTable() {
         { id: "6", title: "◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯◯について", voter: "山田太郎", updater: "鈴木一郎", updateDate: "2021/06/08", status: 1 },
     ]);
 
+    /** ページ遷移用ヒストリー */
     const history = useHistory()
+
     return (
         <MaterialTable
             title="課題リスト"

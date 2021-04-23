@@ -1,7 +1,8 @@
 import '../css/style.scss';
-import { Button, Card, CardActions, CardContent, FormControl, IconButton, Input, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 
+/** サインインページ */
 function SignInPage() {
 
     return (

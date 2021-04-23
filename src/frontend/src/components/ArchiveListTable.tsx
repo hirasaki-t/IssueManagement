@@ -1,7 +1,8 @@
 import MaterialTable from "material-table";
 import { useState } from "react";
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
+/** 過去の案件テーブル */
 function ArchiveListTable() {
 
     /** 案件ステータス定義 */
@@ -25,7 +26,7 @@ function ArchiveListTable() {
         { id: "5", title: "プロジェクトE", status: 10, department: "広報部", createdate: "2021/01/01" },
     ]);
 
-    const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
+    /** ページ遷移用ヒストリー */
     const history = useHistory()
 
     return (
