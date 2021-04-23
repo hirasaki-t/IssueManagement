@@ -2,16 +2,18 @@ import React from 'react';
 import '../css/style.scss';
 import { Select, MenuItem, TextField, InputLabel, FormControl, Button, Dialog } from '@material-ui/core';
 
+/** 課題の新規追加 */
 function AddIssue() {
 
+  /** ダイアログの表示状態 */
   const [open, setOpen] = React.useState(false);
 
-  /** 「課題の新規追加」ボタンの状態がTrue */
+  /** ダイアログを開く */
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  /** 「課題の新規追加」ボタンの状態がFalse */
+  /** ダイアログを閉じる */
   const handleClose = () => {
     setOpen(false)
   };

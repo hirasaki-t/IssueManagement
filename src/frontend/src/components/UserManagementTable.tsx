@@ -1,9 +1,10 @@
 import MaterialTable from "material-table";
 import { useState } from "react";
 
+/** ユーザー管理テーブル */
 function UserManagementTable() {
 
-    /** 権限定義 */
+    /** 権限情報 */
     const authorities = { 1: "開発", 2: "営業" };
 
     /** テーブルのヘッダー定義 */
@@ -19,8 +20,6 @@ function UserManagementTable() {
     const [datas, setData] = useState([
         { id: "1", name: "増永理俊", mail: "testtest@gmail.com", department: "総務部", authority: 1 },
     ]);
-
-    const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
 
     return (
         <MaterialTable
@@ -40,14 +39,6 @@ function UserManagementTable() {
                     })
             }}
             options={{ pageSize: 10, headerStyle: { whiteSpace: 'nowrap' }, rowStyle: { whiteSpace: 'nowrap' } }}
-            onRowClick={(_, rowData) => // ★ 行クリック時の処理
-                setSelectedCouponId(
-                    rowData &&
-                        (!selectedCouponId || selectedCouponId !== rowData.id)
-                        ? rowData.id
-                        : null
-                )
-            }
         />
     );
 }

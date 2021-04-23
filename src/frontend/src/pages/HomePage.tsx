@@ -1,6 +1,7 @@
 import Drawers from '../components/Drawers';
 import '../css/style.scss';
 
+/** ホームページ */
 function HomePage() {
 
     return (

@@ -3,14 +3,7 @@ import AddProjectButton from "../components/AddProject";
 import ProjectsListTable from '../components/ProjectListTable';
 import '../css/style.scss';
 
-// プロジェクトテーブル構造
-interface ProjectList {
-    projectID: number;
-    projectStatusID: number;
-    issueID: number;
-    project: string;
-}
-
+/** 案件リストページ */
 function ProjectsListPage() {
 
     return (

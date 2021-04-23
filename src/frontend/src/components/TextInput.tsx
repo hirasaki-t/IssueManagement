@@ -1,6 +1,7 @@
 import '../css/style.scss';
 import { Button, Icon, TextField } from "@material-ui/core";
 
+/** メッセージの投稿メッセージ */
 function TextInput() {
 
     return (

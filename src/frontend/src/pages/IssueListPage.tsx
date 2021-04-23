@@ -5,8 +5,12 @@ import Drowers from '../components/Drawers';
 import IssueTable from '../components/IssueListTable';
 import '../css/style.scss';
 
+/** 課題リストページ */
 function IssueListPage() {
+
+    /** マークダウンエディタ情報 */
     const [markdown, setMarkdown] = useState('');
+
     return (
         <div>
             <Drowers>

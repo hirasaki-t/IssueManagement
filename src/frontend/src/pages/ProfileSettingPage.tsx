@@ -3,6 +3,7 @@ import '../css/style.scss';
 import { Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 
+/** ユーザー設定ページ */
 function ProfileSettingPage() {
 
     return (

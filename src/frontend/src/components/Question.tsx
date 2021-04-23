@@ -3,6 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import PersonIcon from '@material-ui/icons/Person';
 import { TextField } from '@material-ui/core';
 
+/** メッセージの質問 */
 function Question() {
 
   return (
