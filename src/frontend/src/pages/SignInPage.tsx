@@ -12,7 +12,7 @@ function SignInPage() {
                     サインイン
                 </Typography>
                 <CardActions>
-                    <TextField className="signin_user" label="Email" variant="outlined" />
+                    <TextField className="signin_user" label="ID" variant="outlined" />
                 </CardActions>
                 <CardActions>
                     <FormControl className="signin_pass" variant="outlined">

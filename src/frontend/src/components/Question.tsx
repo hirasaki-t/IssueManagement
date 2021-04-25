@@ -1,7 +1,8 @@
 import '../css/style.scss';
 import Avatar from '@material-ui/core/Avatar';
 import PersonIcon from '@material-ui/icons/Person';
-import { TextField } from '@material-ui/core';
+import { TextField, IconButton } from '@material-ui/core';
+import { Edit, Delete } from '@material-ui/icons';
 
 /** メッセージの質問 */
 function Question() {
@@ -16,7 +17,14 @@ function Question() {
       </div>
       <div className='rightStackContainer'>
         <h5>2021/01/01 10:00</h5>
+        <IconButton color="primary" component="span">
+          <Edit />
+        </IconButton>
+        <IconButton color="primary" component="span">
+          <Delete />
+        </IconButton>
       </div>
+
     </div>
   );
 }
