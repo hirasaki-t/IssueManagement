@@ -14,6 +14,9 @@ function ProfileSettingPage() {
                         <TextField className="setting_name" label="名前" variant="outlined" InputProps={{ readOnly: true }} />
                     </div>
                     <div>
+                        <TextField className="setting_name" label="サインインID" variant="outlined" InputProps={{ readOnly: true }} />
+                    </div>
+                    <div>
                         <TextField className="setting_email" label="Email" variant="outlined" />
                     </div>
                     <div>

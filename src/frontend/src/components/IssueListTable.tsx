@@ -13,7 +13,7 @@ function IssueListTable() {
     /** テーブルのヘッダー定義 */
     const [columns, setColumns] = useState([
         { title: '課題ID', field: 'id', editable: 'never' as any },
-        { title: '課題', field: 'title' },
+        { title: '課題名', field: 'title' },
         { title: '起票者', field: 'voter', editable: 'never' as any },
         { title: '最終更新者', field: 'updater', editable: 'never' as any },
         { title: '最終更新日', field: 'updateDate', editable: 'never' as any },
