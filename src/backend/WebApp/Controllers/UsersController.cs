@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Model.DB.DataService;
 using Model.Tables;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,14 +11,21 @@ namespace WebApp.Controllers
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
-        /// <summary>既存ユーザーを取得</summary>
-        /// <param name="id">ユーザーID</param>
-        /// <returns>ユーザーIDに紐づくユーザー一覧</returns>
-        [HttpGet]
-        public async Task<IEnumerable<User>> GetAsync(int id)
+        /// <summary>データサービス</summary>
+        private readonly IDataService dataService;
+
+        /// <summary>コンストラクタ</summary>
+        /// <param name="dataService">データサービス</param>
+        public UsersController(IDataService dataService)
         {
-            return null;
+            this.dataService = dataService;
         }
+
+        /// <summary>既存ユーザーを取得</summary>
+        /// <returns>ユーザー一覧</returns>
+        [HttpGet]
+        public async Task<IEnumerable<User>> GetAsync() =>
+            await dataService.GetUserAsync();
 
         /// <summary>新規ユーザーを追加</summary>
         /// <param name="userName">登録するユーザー名</param>
