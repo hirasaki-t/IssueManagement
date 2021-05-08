@@ -1,9 +1,14 @@
+import React, { useContext } from 'react'
 import MaterialTable from "material-table";
 import { useState } from "react";
 import { useHistory } from 'react-router-dom';
+import { ProjectContext } from "../pages/ProjectListPage"
 
 /** 案件リストテーブル */
 function ProjectListTable() {
+
+    /** 案件コンテキスト */
+    const project = useContext(ProjectContext);
 
     /** 案件ステータス定義 */
     const projectStatus = { 1: "未着手", 2: "要求分析", 3: "要件定義", 4: "基本設計", 5: "詳細設計", 6: "開発", 7: "内部テスト", 8: "ユーザーテスト", 9: "リリース準備", 10: "リリース済" };
@@ -18,13 +23,7 @@ function ProjectListTable() {
     ]);
 
     /** テーブルの値セット */
-    const [datas, setData] = useState([
-        { id: "6", title: "プロジェクトF", status: 5, department: "総務部", createdate: "2021/01/01" },
-        { id: "7", title: "プロジェクトG", status: 8, department: "総務部", createdate: "2021/01/01" },
-        { id: "8", title: "プロジェクトH", status: 2, department: "その他", createdate: "2021/01/01" },
-        { id: "9", title: "プロジェクトI", status: 1, department: "営業部", createdate: "2021/01/01" },
-        { id: "10", title: "プロジェクトJ", status: 7, department: "広報部", createdate: "2021/01/01" },
-    ]);
+    const [datas, setData] = useState([project]);
 
     /** ページ遷移用ヒストリー */
     const history = useHistory()
